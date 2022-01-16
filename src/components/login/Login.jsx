@@ -1,6 +1,10 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import "./Login.scss"
-import {changeLoginPopup} from "../../reducers/appReducer"
+import {changeLoginPopup, changeRegistrationPopup} from "../../reducers/appReducer"
+import {closeIcon} from "../../assets/icons/iconsSvg"
+import React from 'react'
+import {login} from "../../actions/user"
+
 
 
 
@@ -9,24 +13,50 @@ function Login () {
     function changeLoginPopupHundler () {
         dispatch(changeLoginPopup())
     }
-    let closeIcon = <svg xmlns="http://www.w3.org/2000/svg" width={32} height={32} fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16"><path fillRule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" /><path fillRule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" /></svg>
+    function changeRegistrationPopupHundler () {
+        dispatch(changeRegistrationPopup())
+    }
+
+    let [formData, setFormData] = React.useState({
+        email: "",
+        password: ""
+    })
+
+    function setFormDataHundler (target) {
+        setFormData({...formData, [target.name]: target.value})
+    }
+    function sendFormHandler (e) {
+        e.preventDefault()
+        dispatch(login(formData['email'], formData['password']))
+
+        // if (isAuth) {
+        //     setFormData({
+        //         email: "",
+        //         password: ""
+        //     })
+
+        // }
+
+
+    }
   
     return (
         <div className="popup">
             <div className="popup__inner">
                 <button type="button" onClick={changeLoginPopupHundler} className="popup__close">{closeIcon}</button>
-                <form method="POST" className="popup__form form">
+                <form method="POST" className="popup__form form" onSubmit={sendFormHandler}>
                     <h3 className="form__title">Вход в аккаунт</h3>
                     <p className="form__desc">Сможете быстро оформлять заказы, использовать бонусы</p>
                     <div className="form__row">
                         <label htmlFor="email" className="form__label">Ваш email</label>
-                        <input type="text" name="email" id="email" className="form__input input" required />
+                        <input type="text" name="email" id="email" className="form__input input" required onChange={(e)=>{setFormDataHundler(e.target)}} value={formData['email']}  />
                     </div>
                     <div className="form__row">
                         <label htmlFor="password" className="form__label">Ваш пароль</label>
-                        <input type="password" name="password" id="password" className="form__input input" required />
+                        <input type="password" name="password" id="password" className="form__input input" required onChange={(e)=>{setFormDataHundler(e.target)}} value={formData['password']} />
                     </div>
-                    <button className="btn form__btn">Войти</button>
+                    <button type="submit" className="btn form__btn form__btn--login">Войти</button>
+                    <button type="button" className="btn btn--inversion form__btn form__btn--registartion" onClick={changeRegistrationPopupHundler}>Регистраиця</button>
                 </form>
             </div>
         </div>

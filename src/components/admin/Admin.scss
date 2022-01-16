@@ -1,0 +1,46 @@
+@import "../../assets/styles/variables.scss";
+
+.add-product {
+    &__form {
+        max-width: 300px;
+        width: 100%;
+    }
+}
+
+
+.admin {
+    // &-list {
+
+    // }
+    &-product {
+        border: 1px solid $primary;
+        background-color: $white;
+        &--edit {
+            cursor: no-drop;
+            user-select: none;
+            tbody {
+                pointer-events: none;
+            }
+        }
+        &__img {
+            width: 100%;
+            border-radius: 50%;
+            max-width: 100px;
+        }
+        &__row:not(:last-child) &__col {
+             
+                border-bottom: 1px solid $primary;
+            
+        }
+        &__col {
+            max-width: 250px;
+            padding: 10px;
+            &:not(:last-child) {
+                border-right: 1px solid $primary;
+            }
+        }
+
+    }
+    
+}
+

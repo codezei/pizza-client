@@ -49,15 +49,7 @@
 
 
 
-.btn {
-    background-color: #FF7010;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    border: none;
-    padding: 15px;
-    cursor: pointer;
-}
+
 
 .input {
     background-color: #fff;
@@ -96,5 +88,8 @@
     }
     &__btn {
         width: 100%;
+        &--registartion {
+            margin-top: 15px;
+        }
     }
 }

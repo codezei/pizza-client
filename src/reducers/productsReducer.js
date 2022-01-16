@@ -1,6 +1,7 @@
 const ADD_PRODUCT = "ADD_PRODUCT"
-const REMOVE_PRODUCT = "REMOVE_PRODUCT"
+const DELETE_PRODUCT = "DELETE_PRODUCT"
 const SET_PRODUCTS = "SET_PRODUCTS"
+const EDIT_PRODUCT = "EDIT_PRODUCT"
 
 const defaultState = {
     products: []
@@ -12,13 +13,24 @@ function productsReducer (state = defaultState, action) {
             return {
                 ...state, products: [...state.products, action.payload]
             }
-        case REMOVE_PRODUCT:
+        case EDIT_PRODUCT:
+            return {
+
+                ...state, products: [...state.products.map(item=>{
+                    return (
+                        item._id === action.payload._id ? action.payload : item
+                    )
+                    
+                })]
+            }
+        case DELETE_PRODUCT:
             return {
                 ...state, products: [...state.products.filter(item=>{
-                    return item.id !== action.payload.id
+                    return item._id !== action.payload
                 })]
             }
         case SET_PRODUCTS:
+            console.log(state.products)
             return {
                 ...state, products: action.payload
             }
@@ -34,10 +46,10 @@ function addProduct (product) {
     }
 }
 
-function removeProduct (product) {
+function deleteProduct (id) {
     return {
-        type: REMOVE_PRODUCT,
-        payload: product
+        type: DELETE_PRODUCT,
+        payload: id
     }
 }
 function setProducts(products) {
@@ -46,5 +58,11 @@ function setProducts(products) {
         payload: products
     }
 }
+function editProduct(product) {
+    return {
+        type: EDIT_PRODUCT,
+        payload: product
+    }
+}
 
-export {productsReducer, addProduct, removeProduct, setProducts}
+export {productsReducer, addProduct, deleteProduct, setProducts, editProduct}
