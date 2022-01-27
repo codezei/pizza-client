@@ -3,6 +3,7 @@ import {changeRegistrationPopup} from "../../reducers/appReducer"
 import {closeIcon} from "../../assets/icons/iconsSvg"
 import React from 'react'
 import {registration} from "../../actions/user"
+import "./Registration.scss"
 
 
 
@@ -32,7 +33,8 @@ function Registration () {
         <div className="popup">
             <div className="popup__inner">
                 <button type="button" onClick={changeRegistrationPopupHundler} className="popup__close">{closeIcon}</button>
-                <form method="POST" className="popup__form form" onSubmit={(e)=>{sendFormHandler(e)}}>
+                <div className="registration">
+                <form method="POST" className="registration__form form" onSubmit={(e)=>{sendFormHandler(e)}}>
                     <h3 className="form__title">Регистрация аккаунтa</h3>
                     <p className="form__desc">Сможете быстро оформлять заказы, использовать бонусы</p>
                     <div className="form__row">
@@ -45,6 +47,7 @@ function Registration () {
                     </div>
                     <button className="btn form__btn" type="submit">Регистрация</button>
                 </form>
+                </div>
             </div>
         </div>
     )

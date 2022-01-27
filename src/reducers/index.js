@@ -10,6 +10,7 @@ const rootReducer = combineReducers({
     products: productsReducer,
     user: userReducer,
     app: appReducer
+    
 })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

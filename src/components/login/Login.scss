@@ -1,51 +1,15 @@
-.popup {
-    // background-color: rgba($color: #000000, $alpha: 0.1);
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    &:before {
-        content: "";
-        position: absolute;
-        display: block;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: rgba(25, 25, 25, 0.4);
-        backdrop-filter: blur(32px);
-    }
-    &__inner {
-        background-color: #F9F9F9;
-        max-width: 850px;
-        width: 100%;
-        padding: 60px;
-        border-radius: 24px;
-        position: relative;
-    }
+.login {
+    background-color: #F9F9F9;
+    padding: 60px;
     &__form {
         max-width: 320px;
         width: 100%;
         margin-left: auto;
         margin-right: auto;
     }
-    &__close {
-        position: absolute;
-        top: 0;
-        left: calc(100% + 30px);
-        background-color: transparent;
-        color: #fff;
-        cursor: pointer;
-        border: none;
-        width: 32px;
-        height: 32px;
-    }
-}   
+}
+
+
 
 
 
@@ -59,7 +23,9 @@
     display: block;
 }
 
-
+.checkbox {
+    margin-right: 5px;
+}
 .form {
     &__title {
         text-align: center;
@@ -77,6 +43,9 @@
         display: block;
         margin-bottom: 8px;
         font-size: 14px;
+        &--checkbox {
+            margin-bottom: 0;
+        }
     }
     &__row {
         &:not(:last-child) {
@@ -90,6 +59,20 @@
         width: 100%;
         &--registartion {
             margin-top: 15px;
+        }
+    }
+    &__checkbox {
+        display: flex;
+        align-items: center;
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+        &-list {
+            background-color: #fff;
+            border-radius: 6px;
+            border: 1px solid #F0F0F0;
+            padding: 15px;
+            display: block;
         }
     }
 }

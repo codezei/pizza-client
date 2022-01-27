@@ -38,6 +38,7 @@ function auth () {
             dispatch(setUser(response.data.user))
 
         } catch (e) {
+            console.log(localStorage.getItem('token'))
             alert(e.response.data.message)
         }
     }

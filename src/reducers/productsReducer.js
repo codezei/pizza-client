@@ -4,7 +4,130 @@ const SET_PRODUCTS = "SET_PRODUCTS"
 const EDIT_PRODUCT = "EDIT_PRODUCT"
 
 const defaultState = {
-    products: []
+    products: [],
+    currentProduct: {},
+    addComposition: [
+        {
+            name: "Моцарелла",
+            value: "mozzarella",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Сыр"
+
+        },
+        {
+            name: "Шампиньоны",
+            value: "champignon",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Компонент"
+
+        },
+        {
+            name: "Огурцы маринованные",
+            value: "cucumbers",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Компонент"
+
+        },
+        {
+            name: "Паперони",
+            value: "paperoni",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Мясо"
+
+        },
+        {
+            name: "Томатный соус",
+            value: "tomato-sauce",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Компонент"
+
+        },
+        {
+            name: "Красный лук",
+            value: "red-onion",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Компонент"
+
+        },
+        {
+            name: "Сладкий соус",
+            value: "sweet-sauce",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Компонент"
+
+        },
+        {
+            name: "Курица",
+            value: "chicken",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Мясо"
+
+        },
+        {
+            name: "Бекон",
+            value: "bacon",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Мясо"
+
+        },
+        {
+            name: "Ветчина",
+            value: "ham",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Мясо"
+
+        },
+        {
+            name: "Маслины",
+            value: "olives",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Компонент"
+
+        },
+        {
+            name: "Красный перец",
+            value: "red-pepper",
+            checked: false,
+            add: false,
+            put: false,
+            price: 50,
+            category: "Компонент"
+
+        }
+    ]
 }
 
 function productsReducer (state = defaultState, action) {
@@ -30,7 +153,6 @@ function productsReducer (state = defaultState, action) {
                 })]
             }
         case SET_PRODUCTS:
-            console.log(state.products)
             return {
                 ...state, products: action.payload
             }
@@ -58,6 +180,7 @@ function setProducts(products) {
         payload: products
     }
 }
+
 function editProduct(product) {
     return {
         type: EDIT_PRODUCT,

@@ -1,11 +1,14 @@
 const defaultState = {
     showLoginPopup: false,
-    showRegistrationPopup: false
+    showRegistrationPopup: false,
+    showLoader: false,
+    currency: "₽"
 }
 
 
 const CHANGE_LOGIN_POPUP = "CHANGE_LOGIN_POPUP"
-const CANGE_REGISTARTION_POPUP = "CANGE_REGISTARTION_POPUP"
+const CHANGE_REGISTARTION_POPUP = "CHANGE_REGISTARTION_POPUP"
+const CHANGE_SHOW_LOADER = "CHANGE_SHOW_LOADER"
 
 function changeLoginPopup () {
     return {
@@ -14,7 +17,13 @@ function changeLoginPopup () {
 }
 function changeRegistrationPopup () {
     return {
-        type: CANGE_REGISTARTION_POPUP
+        type: CHANGE_REGISTARTION_POPUP
+    }
+}
+function changeShowLoader (value) {
+    return {
+        type: CHANGE_SHOW_LOADER,
+        payload: value
     }
 }
 
@@ -24,9 +33,13 @@ function appReducer (state = defaultState, action) {
             return {
                 ...state, showLoginPopup: !state.showLoginPopup, showRegistrationPopup: false
             }
-        case CANGE_REGISTARTION_POPUP:
+        case CHANGE_REGISTARTION_POPUP:
             return {
                 ...state, showRegistrationPopup: !state.showRegistrationPopup, showLoginPopup: false
+            }
+        case CHANGE_SHOW_LOADER:
+            return {
+                ...state, showLoader: action.payload
             }
         default:
             return state
@@ -34,4 +47,4 @@ function appReducer (state = defaultState, action) {
 }
 
 
-export {appReducer, changeLoginPopup, changeRegistrationPopup}
+export {appReducer, changeLoginPopup, changeRegistrationPopup, changeShowLoader}

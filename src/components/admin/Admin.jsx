@@ -11,6 +11,7 @@ import EditProduct from "./editProduct/EditProduct"
 function Admin () {
     const dispatch = useDispatch()
     const products = useSelector(state=>{return state.products.products})
+    const isAdmin = useSelector(state=>{return state.user.isAdmin})
     const [modeEditProduct, setModeEditProduct] = React.useState(false)
     const [currentProduct, setCurrentProduct] = React.useState({})
 
@@ -32,7 +33,12 @@ function Admin () {
         let res = date.match(reg)
         return res
     }
-
+    React.useEffect(()=>{
+        console.log(isAdmin)
+        setTimeout(()=>{
+            console.log(products)
+        }, 3000)
+    }, [isAdmin])
 
     return (
         <div className="admin">
@@ -48,6 +54,7 @@ function Admin () {
                                 <th className="admin-product__col">Изображение</th>
                                 <th className="admin-product__col">Название</th>
                                 <th className="admin-product__col">Состав</th>
+                                <th className="admin-product__col">Дополнительные ингридиенты</th>
                                 <th className="admin-product__col">Стоимость</th>
                                 <th className="admin-product__col">Дата</th>
                                 <th className="admin-product__col">Редактировать</th>
@@ -56,7 +63,7 @@ function Admin () {
                             {
     
                                 products.map((item, index)=>{
-                                    return (
+                                    return  (
                                     <tr className="admin-product__row" key={`product-${index}`}>
                                         <td className="admin-product__col">
                                                         {index + 1}
@@ -68,7 +75,10 @@ function Admin () {
                                             <p className="admin-product__name">{item.name}</p>       
                                         </td>
                                         <td className="admin-product__col">
-                                            <p className="admin-product__composition">{item.composition}</p>
+                                            <p className="admin-product__composition">{item.composition.filter(item=>{return item.checked}).map(item=>{return item.name}).join(', ')}</p>
+                                        </td>
+                                        <td className="admin-product__col">
+                                            <p className="admin-product__composition">{item.compositionAdd.filter(item=>{return item.checked}).map(item=>{return item.name}).join(', ')}</p>
                                         </td>
                                         <td className="admin-product__col">
                                             <p className="admin-product__price">{item.price}</p>
