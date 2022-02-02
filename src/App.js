@@ -11,7 +11,8 @@ import {useDispatch, useSelector} from "react-redux"
 import Popup from "./components/popup/Popup.jsx"
 import Filter from "./components/filter/Filter"
 import Parametres from "./components/order/Parametres"
-
+import Pizza from "./components/pizza/Pizza"
+import Header from "./components/header/Header"
 
 
 
@@ -31,10 +32,14 @@ function App() {
 
     <BrowserRouter>
       <div className="App">
-
+      <Header></Header>
         <main>
           <Routes>
-            <Route path="/" exact element={<Home/>}>
+            <Route path="/" element={<Home/>}>
+              <Route path="filter" element={<Filter/>}></Route>
+              <Route path="parametres/:id" element={<Parametres/>}></Route>
+            </Route>
+            <Route path="/pizza" element={<Pizza/>}>
               <Route path="filter" element={<Filter/>}></Route>
               <Route path="parametres/:id" element={<Parametres/>}></Route>
             </Route>

@@ -1,5 +1,69 @@
+@import "../../assets/styles/variables.scss";
 .filter {
-    &-wrap {
-        
+    background-color: $white;
+    position: fixed;
+    max-width: 520px;
+    width: 100%;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    border-radius: 0;
+    &__title {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    &__category {
+        color: $gray-text;
+        font-size: 16px;
+        margin-bottom: 15px;
+        font-weight: 400;
+        margin-top: 0;
+    }
+    &__btn {
+        padding: 10px 15px;
+        background-color: $white;
+        border: 1px solid $gray-line;
+        display: inline-block;
+        color: $black;
+        border-radius: 6px;
+        line-height: 1;
+        font-size: 14px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        &:hover, &.active {
+            color: $white;
+            border: 1px solid $primary;
+            background-color: $primary;
+        }
+    }
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+    }
+    &__close {
+        background-color: transparent;
+        color: $gray-text;
+        border: none;
+        cursor: pointer;
+    }
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        border-top: 1px solid $gray-line;
+    }
+    &__reset {
+        width: 50%;
+        margin-right: 10px;
+    }
+    &__accept {
+        width: 50%;
+    }
+    &__content {
+        padding: 20px;
     }
 }

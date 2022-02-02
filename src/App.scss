@@ -2470,7 +2470,8 @@ body {
   &--inversion {
     background-color: $white;
     border: 1px solid $primary;
-    color: $black;
+    // color: $black;
+    color:  $primary;
     &:hover {
       background-color: $primary;
       color: $white;

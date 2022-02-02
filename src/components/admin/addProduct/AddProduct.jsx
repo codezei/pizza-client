@@ -45,9 +45,9 @@ function AddProduct () {
                     setProductData({
                         "product-file": "",
                         "product-name": "",
-                        "product-composition": [],
+                        "product-composition": [...addComposition],
                         "product-price": "",
-                        "product-composition-add": [],
+                        "product-composition-add": [...addComposition],
                     })
                     e.target.reset()
                     setLoadedImg(null)

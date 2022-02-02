@@ -4,8 +4,8 @@ import Registration from "../registration/Registration"
 import React from 'react'
 import {useSelector} from "react-redux"
 import Goods from "../goods/Goods"
-import {Outlet} from "react-router-dom"
-import Header from "../header/Header"
+import {Link, Outlet} from "react-router-dom"
+// import Header from "../header/Header"
 
 function Home () {
     const showLoginPopup = useSelector((state)=>{return state.app.showLoginPopup})
@@ -14,10 +14,7 @@ function Home () {
 
     return (
         <div>
-            <Header></Header>
-            <div className="container">
-                <Goods title="Пицца" goods={products}></Goods>
-            </div>
+            <Goods title="Пицца" goods={products} count={8} showMoreBtn={{show: true, path:"/pizza"}}></Goods>
             {
                 showLoginPopup ? <Login></Login> : null
             }
@@ -25,9 +22,6 @@ function Home () {
                 showRegistrationPopup ? <Registration></Registration> : null
             }
             <Outlet></Outlet>
-            
-
-            
         </div>
     )
 }

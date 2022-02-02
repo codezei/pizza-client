@@ -2,6 +2,8 @@ const ADD_PRODUCT = "ADD_PRODUCT"
 const DELETE_PRODUCT = "DELETE_PRODUCT"
 const SET_PRODUCTS = "SET_PRODUCTS"
 const EDIT_PRODUCT = "EDIT_PRODUCT"
+const ADD_FILTER = "ADD_FILTER"
+const DELETE_FILTER = "DELETE_FILTER"
 
 const defaultState = {
     products: [],
@@ -127,7 +129,8 @@ const defaultState = {
             category: "Компонент"
 
         }
-    ]
+    ],
+    filter: []
 }
 
 function productsReducer (state = defaultState, action) {
@@ -155,6 +158,14 @@ function productsReducer (state = defaultState, action) {
         case SET_PRODUCTS:
             return {
                 ...state, products: action.payload
+            }
+        case ADD_FILTER:
+            return {
+                ...state, filter: action.payload
+            }
+        case DELETE_FILTER:
+            return {
+                ...state, filter: action.payload
             }
         default: 
             return state
@@ -187,5 +198,17 @@ function editProduct(product) {
         payload: product
     }
 }
+function addFilter(filter) {
+    return {
+        type: ADD_FILTER,
+        payload: filter
+    }
+}
+function deleteFilter() {
+    return {
+        type: DELETE_FILTER,
+        payload: []
+    }
+}
 
-export {productsReducer, addProduct, deleteProduct, setProducts, editProduct}
+export {productsReducer, addProduct, deleteProduct, setProducts, editProduct, addFilter, deleteFilter}
