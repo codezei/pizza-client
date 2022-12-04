@@ -51,10 +51,7 @@ function Filter () {
         window.history.back();
     }
 
-
-    function changeActiveCategoryHundler (categoryName, compositionValue) {
-
-
+    function changeActiveCategoryHundler (categoryName, compositionValue, active) {
         setCategoriesData(
             categoriesData.map((categoriesItem)=>{
                 if (categoryName === categoriesItem.category) {
@@ -76,38 +73,31 @@ function Filter () {
                 }
             })
         )
-        console.log(categoriesData.map(item=>{
-            return item.composition
-        }).flat().filter(item=>{return item.active}).map(item=>{return item.value}))
-        setActiveCategory(categoriesData.map(item=>{
-            return item.composition
-        }).flat().filter(item=>{return item.active}).map(item=>{return item.value}))
-
+            if (active) {
+                setActiveCategory([...activeCategory.filter(item=>{ return item !== compositionValue})])
+            } else {
+                setActiveCategory([...activeCategory, compositionValue])
+            }
     }
-
-    // React.useEffect(()=>{
-    //     console.log(categoriesData)
-    // }, [])
 
 
     return (
-        <div className="popup">
-            <div className="popup__inner filter">
-                <div className="filter__header">
-                    <h2 className="filter__title">Фильтры</h2>
-                    <button type="button" onClick={goBackHundler} className="filter__close">{closeIcon}</button>
+        <div className="popup" onClick={(e)=>{if(e.target === e.currentTarget) {goBackHundler()}}}>
+            <div className="popup__inner popup__inner--side filter">
+                <div className="popup__header">
+                    <h2 className="popup__title popup__title--side">Фильтры</h2>
+                    <button type="button" onClick={goBackHundler} className="popup__close popup__close--side">{closeIcon}</button>
                 </div>
-                <div className="filter__content">
+                <div className="popup__content">
                     {
                         categoriesData.map((categoryItem, categoryIndex)=>{
                             return (
                             <div key={`category-${categoryIndex}`} className="filter__item">
                                 <h3 className="filter__category">{categoryItem.category}</h3>
-                                
                                 {
                                     categoryItem.composition.map((compositionItem, compositionIndex)=>{
                                         return (
-                                            <button className={`filter__btn ${compositionItem.active ? "active" : ""}`} key={`composition-${compositionIndex}`} onClick={()=>{changeActiveCategoryHundler(categoryItem.category, compositionItem.value)}}>{compositionItem.name}</button>
+                                            <button className={`filter__btn ${compositionItem.active ? "active" : ""}`} key={`composition-${compositionIndex}`} onClick={()=>{changeActiveCategoryHundler(categoryItem.category, compositionItem.value, compositionItem.active)}}>{compositionItem.name}</button>
                                         )
                                     })
                                 }

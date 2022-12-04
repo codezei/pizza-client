@@ -2,7 +2,36 @@ const defaultState = {
     showLoginPopup: false,
     showRegistrationPopup: false,
     showLoader: false,
-    currency: "₽"
+    currency: "₴",
+    productSize: [
+        {   
+            id: "size-20",
+            name: "20 см",
+            value: 20
+        },
+        {
+            id: "size-28",
+            name: "28 см",
+            value: 28
+        },
+        {
+            id: "size-33",
+            name: "33 см",
+            value: 33
+        }
+    ],
+    productDough: [
+        {
+            id: "dough-traditional", 
+            name: "Традиционное",
+            value: "traditional"
+        },
+        {
+            id: "dough-thin", 
+            name: "Тонкое",
+            value: "thin"
+        }
+    ]
 }
 
 

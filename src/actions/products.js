@@ -1,7 +1,6 @@
 import axios from 'axios'
-import {setProducts} from '../reducers/productsReducer'
 import {API_URL} from "../config"
-import {addProduct, deleteProduct, editProduct} from "../reducers/productsReducer"
+import {addProduct, deleteProduct, editProduct, setProducts} from "../reducers/productsReducer"
 import {changeShowLoader} from "../reducers/appReducer"
 
 function getProductsAction () {

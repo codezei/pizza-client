@@ -39,7 +39,7 @@ function auth () {
 
         } catch (e) {
             console.log(localStorage.getItem('token'))
-            alert(e.response.data.message)
+            // alert(e.response.data.message)
         }
     }
 }

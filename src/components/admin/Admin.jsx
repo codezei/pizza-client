@@ -87,7 +87,7 @@ function Admin () {
                                             <p className="admin-product__date">{transformDate(item.date)}</p>
                                         </td>
                                         <td className="admin-product__col tcenter">
-                                            <button className="admin-product__btn btn" type="button" onClick={()=>{setModeEditProductHundler();editProductHundler(item)}}>{editIcon}</button>
+                                            <button className="admin-product__btn btn" type="button" onClick={()=>{setModeEditProductHundler(); editProductHundler(item)}}>{editIcon}</button>
                                         </td>
                                         <td className="admin-product__col tcenter">
                                             <button className="admin-product__btn btn" type="button" onClick={()=>{deleteProductHandler(item._id)}}>{deleteIcon}</button>

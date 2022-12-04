@@ -1,17 +1,27 @@
 import {useParams} from "react-router-dom"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import React from 'react';
 import Loader from "../loader/Loader"
 import {compositionIcons} from "../../assets/icons/iconsSvg"
 import "./Parametres.scss"
 import {API_URL} from "../../config"
-import {useNavigate, Link} from "react-router-dom"
+import {useNavigate, Link, useLocation, useHistory} from "react-router-dom"
 import {closeIcon} from "../../assets/icons/iconsSvg"
+import {addToCart} from "../../reducers/cartReducer"
+import {incrementCountProduct} from '../../reducers/cartReducer'
 
 function Parametres () {
     let {id} = useParams()
+    const dispatch = useDispatch()
     const product = useSelector(state=>{return state.products.products}).filter(item=>{return item._id === id})[0]
     const currency =  useSelector(state=>{return state.app.currency})
+    const cartList = useSelector(state=>{return state.cart.cartList})
+    const productSize = useSelector(state=>{return state.app.productSize})
+    const productDough = useSelector(state=>{return state.app.productDough})
+    const [productData, setProductData] = React.useState({
+        ...product, size: productSize[0], dough: productDough[0], count: 1, key: product._id
+    })
+
     function setProductDataSizeHundler (target) {
         setProductData({...productData, size: target})
     }
@@ -39,47 +49,34 @@ function Parametres () {
             
         })})
     }
-
-
-    const productSize = [
-        {   
-            id: "size-20",
-            name: "20 см",
-            value: 20
-        },
-        {
-            id: "size-28",
-            name: "28 см",
-            value: 28
-        },
-        {
-            id: "size-33",
-            name: "33 см",
-            value: 33
+    function addProductToCartHundler () {
+        if (compareProducts()) {
+            dispatch(incrementCountProduct(productData))
+        } else {
+            
+            dispatch(addToCart({...productData, key: new Date().getTime()}))
+            setProductData({...productData, key: new Date().getTime()})
         }
-    ]
-    const productDough = [
-        {
-            id: "dough-traditional", 
-            name: "Традиционное",
-            value: "traditional"
-        },
-        {
-            id: "dough-thin", 
-            name: "Тонкое",
-            value: "thin"
-        }
-    ]
+        
+    }
 
-    const [productData, setProductData] = React.useState({
-        ...product, size: productSize[0], dough: productDough[0]
-    })
 
-    
 
-    const navigate = useNavigate()
     function goBackHundler () {
-        navigate('/')
+
+        // navigate(`/`)
+        window.history.back()
+    }
+
+    function compareProducts () {
+        let equal = false
+        let cartProduct = cartList.find(item=>{
+            return item._id === productData._id
+        })
+        if (cartProduct && JSON.stringify([cartProduct.composition, cartProduct.compositionAdd, cartProduct.dough, cartProduct.size]) === JSON.stringify([productData.composition, productData.compositionAdd, productData.dough, productData.size])) {
+            equal = true
+        }
+        return equal
     }
 
     React.useEffect(()=>{
@@ -89,13 +86,11 @@ function Parametres () {
             ...product
         })
 
-
-
     }, [product])
 
     return (
 
-                <div className="popup">
+                <div className="popup" onClick={(e)=>{if(e.target === e.currentTarget) {goBackHundler()}}}>
                     <div className="popup__inner parametres">
                         <button type="button" onClick={goBackHundler} className="popup__close">{closeIcon}</button>
                         {
@@ -162,7 +157,7 @@ function Parametres () {
                                             <div className="parametres__weight">{productData.weight} г</div>
                                         </div>
 
-                                        <Link to="" className="btn">Добавить</Link>
+                                        <Link to="/" className="btn" onClick={()=>{addProductToCartHundler()}}>Добавить</Link>
                                     </div>
 
                                 </div>

@@ -1,0 +1,51 @@
+@import "../../assets/styles/variables.scss";
+.cart {
+
+    &__item {
+        padding: 15px;
+        border: 1px solid $gray-line;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+    }
+    &__img {
+        max-width: 100px;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+    &__name {
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    &__count {
+        display: flex;
+        background: #FFEEE2;
+        color: #FF7010;
+        padding: 5px;
+        border-radius: 5px;
+        align-items: center;
+        
+        &-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+            padding: 5px;
+        }
+        &-value {
+            padding: 5px;
+        }
+    }
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__price {
+        color: #FF7010;
+        font-weight: 700;
+    }
+}

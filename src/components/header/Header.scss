@@ -38,4 +38,16 @@
     &__check-btn {
         margin-right: 40px;
     }
+    &__bottom {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__info {
+        position: absolute;
+        width: 100px;
+        padding: 10px;
+        left: 0;
+        top: 100%;
+    }
 }

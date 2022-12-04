@@ -4,12 +4,14 @@ import thunk from "redux-thunk"
 import {productsReducer} from "./productsReducer.js"
 import {userReducer} from "./userReducer.js"
 import {appReducer} from "./appReducer.js"
+import {cartReducer} from "./cartReducer.js"
 
 
 const rootReducer = combineReducers({
     products: productsReducer,
     user: userReducer,
-    app: appReducer
+    app: appReducer,
+    cart: cartReducer
     
 })
 
