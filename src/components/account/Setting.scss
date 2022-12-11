@@ -1,0 +1,39 @@
+.setting {
+    &__item {
+        border: 1px solid #F0F0F0;
+        border-radius: 12px;
+        background: #FFFFFF;
+        padding: 15px;
+        &-title {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+                &-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;margin-bottom: 15px;
+        }
+        &-row {
+            display: flex;
+            align-items: flex-end;
+        }
+        &-col {
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
+        }
+        &-label {
+            color: var(--gray-text);
+            display: block;
+            margin-bottom: 10px;
+        }
+        &-input {
+            &[disabled] {
+                background: transparent;
+                border: none;
+                color: var(--black);
+                padding: 0;
+            }
+        }
+    }
+}

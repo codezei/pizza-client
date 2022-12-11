@@ -1,15 +1,21 @@
 import axios from "axios"
 import {setUser} from "../reducers/userReducer"
 import {API_URL} from "../config"
-import {changeLoginPopup} from "../reducers/appReducer"
+import {closeLoginPopup, closeRegistrationPopup} from "../reducers/appReducer"
 
-async function registration (email, password) {
-    try {
-        const response = await axios.post(`${API_URL}api/auth/registration`, {email, password})
-        console.log(response)
-    } catch (e) {
-        alert(e.response.data.message)
+function registration (email, password) {
+    return async function (dispatch) {
+        try {
+            const response = await axios.post(`${API_URL}api/auth/registration`, {email, password})
+            console.log(response)
+            dispatch(closeRegistrationPopup())
+            console.log(email, password)
+            dispatch(login(email, password))
+        } catch (e) {
+            alert(e.response.data.message)
+        }
     }
+
 }
 
 function login (email, password) {
@@ -18,7 +24,7 @@ function login (email, password) {
             const response = await axios.post(`${API_URL}api/auth/login`, {email, password})
             localStorage.setItem('token', response.data.token)
             dispatch(setUser(response.data.user))
-            dispatch(changeLoginPopup())
+            dispatch(closeLoginPopup())
            
         } catch (e) {
             alert(e.response.data.message)
@@ -39,10 +45,31 @@ function auth () {
 
         } catch (e) {
             console.log(localStorage.getItem('token'))
-            // alert(e.response.data.message)
+            alert('ошибка авторизации')
+            alert(e.response.data.message)
+        }
+    }
+}
+
+function edit (userData) {
+    return async function (dispatch) {
+        try {
+            if (!localStorage.getItem('token')) {
+                return
+            }
+            const response = await axios.post(`${API_URL}api/auth/edit`, userData, {
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+            })
+            dispatch(setUser(response.data.user))
+            console.log(response.data.user)
+
+        } catch (e) {
+            alert('ошибка при изменении данных')
+            alert(e.response.data.message)
         }
     }
 }
 
 
-export {registration, login, auth}
+
+export {registration, login, auth, edit}

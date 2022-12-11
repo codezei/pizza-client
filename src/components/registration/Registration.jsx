@@ -22,11 +22,11 @@ function Registration () {
     }
     function sendFormHandler (e) {
         e.preventDefault()
-        registration(formData['email'], formData['password'])
-        setFormData({
-            email: "",
-            password: ""
-        })
+        dispatch(registration(formData['email'], formData['password']))
+        // setFormData({
+        //     email: "",
+        //     password: ""
+        // })
     }
   
     return (

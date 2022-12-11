@@ -1,0 +1,20 @@
+.account {
+    padding: 60px 0;
+    &__title {
+        margin: 0;
+    }
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    &__navigation {
+        display: flex;
+        &-btn {
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
+        }
+    }
+}

@@ -19,6 +19,9 @@
     &__top {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
         &-left {
             display: flex;
             align-items: center;
@@ -41,7 +44,7 @@
     &__bottom {
         position: relative;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
     }
     &__info {
         position: absolute;
@@ -49,5 +52,10 @@
         padding: 10px;
         left: 0;
         top: 100%;
+    }
+    &__btn {
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
     }
 }

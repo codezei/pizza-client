@@ -3,7 +3,7 @@ import {closeIcon} from "../../assets/icons/iconsSvg"
 import {useDispatch, useSelector} from "react-redux"
 import React from 'react';
 import {addFilter, deleteFilter} from "../../reducers/productsReducer"
-
+import {changeFilterPopup} from "../../reducers/appReducer"
 
 
 function Filter () {
@@ -13,6 +13,7 @@ function Filter () {
     const filter = useSelector(state=>{return state.products.filter})
     const [activeCategory, setActiveCategory] = React.useState([...filter])
     const composition = useSelector(state=>{return state.products.addComposition})
+    
     let categories = Array.from(new Set(composition.map(item=>{return item.category}))).map((category=>{
         
         return {
@@ -47,10 +48,9 @@ function Filter () {
         dispatch(deleteFilter())
     }
 
-    function goBackHundler () {
-        window.history.back();
+    function changeFilterPopupHandler () {
+        dispatch(changeFilterPopup())
     }
-
     function changeActiveCategoryHundler (categoryName, compositionValue, active) {
         setCategoriesData(
             categoriesData.map((categoriesItem)=>{
@@ -82,11 +82,11 @@ function Filter () {
 
 
     return (
-        <div className="popup" onClick={(e)=>{if(e.target === e.currentTarget) {goBackHundler()}}}>
+        <div className="popup" onClick={(e)=>{if(e.target === e.currentTarget) {changeFilterPopupHandler()}}}>
             <div className="popup__inner popup__inner--side filter">
                 <div className="popup__header">
                     <h2 className="popup__title popup__title--side">Фильтры</h2>
-                    <button type="button" onClick={goBackHundler} className="popup__close popup__close--side">{closeIcon}</button>
+                    <button type="button" onClick={changeFilterPopupHandler} className="popup__close popup__close--side">{closeIcon}</button>
                 </div>
                 <div className="popup__content">
                     {

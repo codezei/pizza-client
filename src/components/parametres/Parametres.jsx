@@ -5,7 +5,7 @@ import Loader from "../loader/Loader"
 import {compositionIcons} from "../../assets/icons/iconsSvg"
 import "./Parametres.scss"
 import {API_URL} from "../../config"
-import {useNavigate, Link, useLocation, useHistory} from "react-router-dom"
+import {Link} from "react-router-dom"
 import {closeIcon} from "../../assets/icons/iconsSvg"
 import {addToCart} from "../../reducers/cartReducer"
 import {incrementCountProduct} from '../../reducers/cartReducer'

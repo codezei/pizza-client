@@ -2477,6 +2477,15 @@ body {
       color: $white;
       
     }
+    &.active {
+      background-color: $primary;
+      border: 1px solid $primary;
+      color: #fff;
+      &:hover {
+        background-color: $primary;
+        border: 1px solid $primary;
+      }
+    }
   }
 }
 .tcenter {

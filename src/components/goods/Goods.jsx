@@ -1,14 +1,18 @@
 import "./Goods.scss"
 import {API_URL} from "../../config"
-import {Link, useLocation} from "react-router-dom"
-import {useSelector} from "react-redux"
+import {Link} from "react-router-dom"
+import {useSelector, useDispatch} from "react-redux"
 import React from 'react';
-
+import {changeFilterPopup} from "../../reducers/appReducer"
 
 function Goods (props) {
 
     const filter = useSelector(state=>{return state.products.filter})
-
+    const dispatch = useDispatch();
+    function changeFilterPopupHandler () {
+        dispatch(changeFilterPopup())
+    }
+      
     function checkConformityFilter (filter, composition) {
         let res = filter.every(filterItem=>{
             let findRes = composition.find(compositionItem=>{
@@ -19,13 +23,12 @@ function Goods (props) {
         return res
     }
 
-    let location = useLocation()
     return (
         <section className="goods">
             <div className="container">
                 <div className="goods__nav">
                     <h2 className="goods__title">{props.title}</h2>
-                    <Link to={`${location.pathname === "/" ? "" : location.pathname}/filter`}>Фильтр</Link>
+                    <button className="btn" onClick={changeFilterPopupHandler}>Фильтр</button>
                 </div>
                 <div className="goods__list">
                     {
@@ -44,7 +47,7 @@ function Goods (props) {
                         })
                     }
                 </div>
-                {!props?.showMoreBtn?.show || <Link to={props.showMoreBtn.path}>Посмотреть все</Link>}
+                {/* {!props?.showMoreBtn?.show || <Link to={props.showMoreBtn.path}>Посмотреть все</Link>} */}
             </div>
 
         </section>
