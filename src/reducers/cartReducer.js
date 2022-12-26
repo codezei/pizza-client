@@ -2,6 +2,7 @@ const ADD_TO_CART = "ADD_TO_CART"
 const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 const INCREMENT_COUNT_PRODUCT = "INCREMENT_COUNT_PRODUCT"
 const DECREMENT_COUNT_PRODUCT = "DECREMENT_COUNT_PRODUCT"
+const CLEAR_CART = "CLEAR_CART"
 const defaultState = {
     cartList: JSON.parse(localStorage.getItem('cartList')) || []
 }
@@ -59,6 +60,11 @@ function cartReducer (state = defaultState, action) {
                     return item.key !== action.payload.key
                 })
             }
+        case CLEAR_CART:
+            localStorage.removeItem('cartList')
+            return {
+                ...state, cartList: []
+            }
         default:
             return state
     } 
@@ -76,6 +82,11 @@ function removeFromCart (product) {
         payload: product
     }
 }
+function clearCart () {
+    return {
+        type: CLEAR_CART
+    }
+}
 
 function incrementCountProduct (product) {
     return {
@@ -91,4 +102,4 @@ function decrementCountProduct (product) {
 }
 
 
-export {cartReducer, addToCart, incrementCountProduct, decrementCountProduct, removeFromCart}
+export {cartReducer, addToCart, incrementCountProduct, decrementCountProduct, removeFromCart, clearCart}

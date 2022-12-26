@@ -19,7 +19,9 @@ import Setting from "./components/account/Setting"
 import History from "./components/account/History"
 import Registration from "./components/registration/Registration"
 import Order from "./components/order/Order"
+import OrderDetails from "./components/order/OrderDetails"
 import './components/popup/Popup.scss'
+import OrderTrace from './components/order/OrderTrace';
 
 
 
@@ -47,12 +49,10 @@ function App() {
       <Header></Header>
         <main>
           <Routes>
-            <Route path="/" element={<Home/>} basename="/">
-              
-            </Route>
-            {/* <Route path="/filter" element={<Filter/>}></Route>
-            <Route path="/cart" element={<Cart/>}></Route> */}
+            <Route path="/" element={<Home/>} basename="/"></Route>
             <Route path="/order" element={<Order/>}></Route>
+            <Route path="/details/:id" element={<OrderDetails/>}></Route> 
+            <Route path="/trace" element={<OrderTrace/>}></Route> 
             <Route path="/parametres/:id" element={<Parametres/>}></Route>
             <Route path="*" element={<NoMatch/>}></Route>
             {

@@ -2,14 +2,14 @@ import axios from "axios"
 import {setUser} from "../reducers/userReducer"
 import {API_URL} from "../config"
 import {closeLoginPopup, closeRegistrationPopup} from "../reducers/appReducer"
+import { logOut } from "../reducers/userReducer"
 
 function registration (email, password) {
     return async function (dispatch) {
         try {
             const response = await axios.post(`${API_URL}api/auth/registration`, {email, password})
-            console.log(response)
+            // console.log(response)
             dispatch(closeRegistrationPopup())
-            console.log(email, password)
             dispatch(login(email, password))
         } catch (e) {
             alert(e.response.data.message)
@@ -44,9 +44,8 @@ function auth () {
             dispatch(setUser(response.data.user))
 
         } catch (e) {
-            console.log(localStorage.getItem('token'))
-            alert('ошибка авторизации')
             alert(e.response.data.message)
+            dispatch(logOut())
         }
     }
 }
@@ -64,7 +63,6 @@ function edit (userData) {
             console.log(response.data.user)
 
         } catch (e) {
-            alert('ошибка при изменении данных')
             alert(e.response.data.message)
         }
     }
