@@ -1,12 +1,10 @@
 import {useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import React from 'react';
-import Loader from "../loader/Loader"
 import {compositionIcons} from "../../assets/icons/iconsSvg"
 import "./Parametres.scss"
 import {API_URL} from "../../config"
 import {Link} from "react-router-dom"
-import {closeIcon} from "../../assets/icons/iconsSvg"
 import {addToCart} from "../../reducers/cartReducer"
 import {incrementCountProduct} from '../../reducers/cartReducer'
 
@@ -19,9 +17,8 @@ function Parametres () {
     const productSize = useSelector(state=>{return state.app.productSize})
     const productDough = useSelector(state=>{return state.app.productDough})
     const [productData, setProductData] = React.useState({
-        ...product, size: productSize[0], dough: productDough[0], count: 1, key: product._id
+        ...product, size: productSize[0], dough: productDough[0], count: 1, key: product?._id ? product._id : null
     })
-
     function setProductDataSizeHundler (target) {
         setProductData({...productData, size: target})
     }
@@ -53,21 +50,17 @@ function Parametres () {
         if (compareProducts()) {
             dispatch(incrementCountProduct(productData))
         } else {
-            
-            dispatch(addToCart({...productData, key: new Date().getTime()}))
-            setProductData({...productData, key: new Date().getTime()})
+            if (cartList.length) {
+                dispatch(addToCart({...productData, key: new Date().getTime()}))
+                setProductData({...productData, key: new Date().getTime()})
+            } else {
+                dispatch(addToCart(productData))
+            }
+
+
         }
         
     }
-
-
-
-    function goBackHundler () {
-
-        // navigate(`/`)
-        window.history.back()
-    }
-
     function compareProducts () {
         let equal = false
         let cartProduct = cartList.find(item=>{
@@ -80,94 +73,80 @@ function Parametres () {
     }
 
     React.useEffect(()=>{
-        
-        setProductData({
-            ...productData, 
-            ...product
-        })
+        setProductData({...productData, ...product, key: product?._id ? product._id : null})
 
+        console.log(product)
     }, [product])
 
     return (
-
-                <div className="popup" onClick={(e)=>{if(e.target === e.currentTarget) {goBackHundler()}}}>
-                    <div className="popup__inner parametres">
-                        <button type="button" onClick={goBackHundler} className="popup__close">{closeIcon}</button>
-                        {
-                            !productData?.composition ? <Loader></Loader> : 
-                            <div className="parametres__inner">
-                                <img src={`${API_URL}/${product.imgPath}`} alt="" className="parametres__img" />
-                                <div className="parametres__data">
-                                    <h3>{product.name}</h3>
-                                    <div className="parametres__composition parametres-composition">
-                                        <div className="parametres-composition__list">
-                                            {
-                                            productData.composition.filter(item=>{return item.checked}).map((item, index)=>{
-                                                    return (
-                                                        <div className={`parametres-composition__item ${item.put ? "active" : ""}`} key={`parametres-composition-${index}`} onClick={()=>{changeCompositionHundler(item)}}>
-                                                            <div className="parametres-composition__img">
-                                                                {compositionIcons[item.value]}
-                                                            </div>
-                                                            <div className="parametres-composition__name">{item.name}</div>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                    </div>
-                                    <div className="parametres__dough parametres__row">
-                                            {
-                                                productDough.map((item, index)=>{
-                                                    return (
-                                                        <button key={`parametres-dough-${index}`} className={`${item.id === productData.dough.id ? "active": ""} parametres__btn parametres__btn--dough`} type="button" onClick={()=>{setProductDataDoughHundler(item)}}>{item.name}</button>
-                                                    )
-                                                })
-                                            }
-                                    </div>
-                                    <div className="parametres__size parametres__row">
-                                            {
-                                                productSize.map((item, index)=>{
-                                                    return (
-                                                        <button key={`parametres-size-${index}`} className={`${item.id === productData.size.id ? "active": ""} parametres__btn parametres__btn--size`} type="button" onClick={()=>{setProductDataSizeHundler(item)}}>{item.name}</button>
-                                                    )
-                                                })
-                                            }
-                                    </div>
-                                    <div className="parametres__addition parametres-addition">
-                                        <h4>Добавьте в пиццу</h4>
-                                        <div className="parametres-addition__list">
-                                            {
-                                                productData.compositionAdd.filter(item=>{return item.checked}).map((item, index)=>{
-                                                    return (
-                                                        <div className={`parametres-addition__item ${item.add ? "active" : ""}`} key={`parametres-addition-${index}`} onClick={()=>{changeCompositionAddHundler(item)}}>
-                                                            <div className="parametres-addition__img">
-                                                                {compositionIcons[item.value]}
-                                                            </div>
-                                                            <div className="parametres-addition__name">{item.name}</div>
-                                                            <div className="parametres-addition__price">{item.price} {currency}</div>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                    </div>
-                                    <div className="parametres__footer">
-                                        <div>
-                                            <div className="parametres__total">Итого: {productData.price} {currency}</div>
-                                            <div className="parametres__weight">{productData.weight} г</div>
-                                        </div>
-
-                                        <Link to="/" className="btn" onClick={()=>{addProductToCartHundler()}}>Добавить</Link>
-                                    </div>
-
-                                </div>
-                
+        product?._id ? <div className="parametres">
+                <div className="parametres__inner">
+                    <img src={`${API_URL}/${product.imgPath}`} alt="" className="parametres__img" />
+                    <div className="parametres__data">
+                        <h3>{product.name}</h3>
+                        <div className="parametres__composition parametres-composition">
+                            <div className="parametres-composition__list">
+                                {
+                                productData?.composition && productData.composition.filter(item=>{return item.checked}).map((item, index)=>{
+                                        return (
+                                            <div className={`parametres-composition__item ${item.put ? "active" : ""}`} key={`parametres-composition-${index}`} onClick={()=>{changeCompositionHundler(item)}}>
+                                                <div className="parametres-composition__img">
+                                                    {compositionIcons[item.value]}
+                                                </div>
+                                                <div className="parametres-composition__name">{item.name}</div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
-                        }
-
-
+                        </div>
+                        <div className="parametres__dough parametres__row">
+                                {
+                                    productDough.map((item, index)=>{
+                                        return (
+                                            <button key={`parametres-dough-${index}`} className={`${item.id === productData.dough.id ? "active": ""} parametres__btn parametres__btn--dough`} type="button" onClick={()=>{setProductDataDoughHundler(item)}}>{item.name}</button>
+                                        )
+                                    })
+                                }
+                        </div>
+                        <div className="parametres__size parametres__row">
+                                {
+                                    productSize.map((item, index)=>{
+                                        return (
+                                            <button key={`parametres-size-${index}`} className={`${item.id === productData.size.id ? "active": ""} parametres__btn parametres__btn--size`} type="button" onClick={()=>{setProductDataSizeHundler(item)}}>{item.name}</button>
+                                        )
+                                    })
+                                }
+                        </div>
+                        <div className="parametres__addition parametres-addition">
+                            <h4>Добавьте в пиццу</h4>
+                            <div className="parametres-addition__list">
+                                {
+                                   productData?.compositionAdd && productData.compositionAdd.filter(item=>{return item.checked}).map((item, index)=>{
+                                        return (
+                                            <div className={`parametres-addition__item ${item.add ? "active" : ""}`} key={`parametres-addition-${index}`} onClick={()=>{changeCompositionAddHundler(item)}}>
+                                                <div className="parametres-addition__img">
+                                                    {compositionIcons[item.value]}
+                                                </div>
+                                                <div className="parametres-addition__name">{item.name}</div>
+                                                <div className="parametres-addition__price">{item.price} {currency}</div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                        <div className="parametres__footer">
+                            <div>
+                                <div className="parametres__total">Итого: {productData.price} {currency}</div>
+                                <div className="parametres__weight">{productData.weight} г</div>
+                            </div>
+                            <Link to="/" className="btn" onClick={()=>{addProductToCartHundler()}}>Добавить</Link>
+                        </div>
                     </div>
                 </div>
+            </div> : <div></div>
+
     )
 }
 

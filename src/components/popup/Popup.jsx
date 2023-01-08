@@ -1,20 +1,17 @@
 import "./Popup.scss"
-import {useNavigate, useLocation} from "react-router-dom"
 import {closeIcon} from "../../assets/icons/iconsSvg"
 
 
 function Popup (props) {
-    let Component = props.component
-    const navigate = useNavigate()
-    // const location = useLocation()
-    function goBackHundler () {
-        navigate('/')
+    function closePopupHandler (e) {
+        e.stopPropagation()
+        window.history.back()
     }
     return (
-        <div className="popup">
+        <div className="popup" onClick={(e)=>{if(e.target === e.currentTarget) {closePopupHandler(e)}}}>
             <div className="popup__inner">
-            <button type="button" onClick={goBackHundler} className="popup__close">{closeIcon}</button>
-                <Component></Component>
+                <button type="button" onClick={closePopupHandler} className="popup__close">{closeIcon}</button>
+                {props.children}
             </div>
         </div>
     )

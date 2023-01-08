@@ -1,33 +1,38 @@
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { getOrder } from '../../actions/order';
+
+import OrderDetailsItem from './OrderDetailsItem'
 import React from 'react';
 
 
 function OrderDetails() {
     const currentOrder = useSelector(state=>{return state.order.currentOrder})
+    let currency = useSelector((state) => { return state.app.currency })
     const dispatch = useDispatch()
     let { id } = useParams();
+    const statusDescription = useSelector(state=>{return state.app.statusDescription})
 
     React.useEffect(()=>{
+
         dispatch(getOrder(id))
     }, [])
 
     return ( 
-    <div className="details">
-        <div className="container">
-            <h2 className="details__order">
-                Ваш заказ № {currentOrder.data ? currentOrder.data.number : ''} принят
-            </h2>
-            <p className="details__text">
-                Спасибо за заказ! <br></br>
-                Примерное время доставки 45 минут. Статус отследить можно нажав на кнопку ниже
-            </p>
-            <Link to="/trace">Отследить заказ</Link>
-            
+        <div className="order-details block">
+            <h2 className="order-details__title title">Ваш заказ</h2>
+            {currentOrder?._id 
+            && 
+            <OrderDetailsItem 
+                number={currentOrder.data.number} 
+                date={currentOrder.data.date.match(/[0-9]{4}.[0-9]{2}.[0-9]{2}/)} 
+                status={currentOrder.data.status} foods={currentOrder.foods} 
+                adress={currentOrder.user.adress} total={currentOrder.data.total}
+                currency={currency}
+                statusDescription={statusDescription}
+            ></OrderDetailsItem>}
         </div>
-        
-    </div> );
+    );
 }
 
 export default OrderDetails;

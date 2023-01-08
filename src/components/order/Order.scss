@@ -1,7 +1,7 @@
 
 
 .order {
-    &__item {
+    &-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -16,31 +16,31 @@
         &:not(:last-child) {
             margin-bottom: 25px;
         }
-        &-img {
+        &__img {
             width: 120px;
             margin-right: 15px;
         }
-        &-title {
+        &__title {
             margin-top: 0;
         }
-        &-info {
+        &__info {
             display: flex;
             align-items: center;
         }
-        &-value {
+        &__value {
             display: flex;
             align-items: center;
             max-width: 200px;
             justify-content: space-between;
             width: 100%;
         }
-        &-price {
+        &__price {
             font-weight: 600;
             font-size: 20px;
             line-height: 28px;
             color: #FF7010;
         }
-        &-count {
+        &__count {
             color: #FF7010;
             background: #FFEEE2;
             border-radius: 6px;
@@ -49,33 +49,50 @@
 
         }
     }
-    &__block {
-        &:not(:last-of-type) {
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-        &-row {
-            display: flex;
-        }
-        &-col {
-            max-width: 33%;
-            width: 100%;
-            &:not(:last-child) {
-                margin-right: 15px;
+
+    &-checkout {
+        &__block {
+            &:not(:last-of-type) {
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+                border-bottom: 1px solid #eee;
+            }
+            &-row {
+                display: flex;
+            }
+            &-col {
+                max-width: 33%;
+                width: 100%;
+                &:not(:last-child) {
+                    margin-right: 15px;
+                }
+            }
+            &-label {
+                margin-bottom: 10px;
+                display: block;
+            }
+            &-input {
+                width: 100%;
             }
         }
-        &-label {
-            margin-bottom: 10px;
-            display: block;
-        }
-        &-input {
-            width: 100%;
+        &__footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
     }
-    &__footer {
-        display: flex;
+    
+
+    &-accepted {
+        text-align: center;
+        justify-content: center;
         align-items: center;
-        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
+
 }

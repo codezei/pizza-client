@@ -33,7 +33,25 @@ const defaultState = {
             name: "Тонкое",
             value: "thin"
         }
-    ]
+    ],
+    statusDescription: {
+        'processing': {
+            name: 'В обработке',
+            color: 'red'
+        },
+        'delivery': {
+            name: 'Доставка',
+            color: 'orange'
+        },
+        'done': {
+            name: 'Выполнен',
+            color: 'orange'
+        },
+        'cancel': {
+            name: 'Отменен',
+            color: 'gray'
+        }
+    }
 }
 
 

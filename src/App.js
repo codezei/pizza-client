@@ -21,20 +21,15 @@ import Registration from "./components/registration/Registration"
 import Order from "./components/order/Order"
 import OrderDetails from "./components/order/OrderDetails"
 import './components/popup/Popup.scss'
-import OrderTrace from './components/order/OrderTrace';
-
+import OrderAccepted from './components/order/OrderAccepted';
+import Popup from "./components/popup/Popup.jsx"
+import PopupSide from './components/popup/PopupSide';
+import OrderCheckout from './components/order/OrderCheckout';
 
 
 function App() {
   const dispatch = useDispatch()
   const isAdmin = useSelector(state=>{return state.user.isAdmin})
-  const showLoginPopup = useSelector((state)=>{return state.app.showLoginPopup})
-  const showRegistrationPopup = useSelector((state)=>{return state.app.showRegistrationPopup})
-  const showFilterPopup = useSelector((state)=>{return state.app.showFilterPopup})
-  const showCartPopup = useSelector((state)=>{return state.app.showCartPopup})
-
-
-
   React.useEffect(()=>{
     dispatch(auth())
     dispatch(getProductsAction())
@@ -49,14 +44,24 @@ function App() {
       <Header></Header>
         <main>
           <Routes>
-            <Route path="/" element={<Home/>} basename="/"></Route>
-            <Route path="/order" element={<Order/>}></Route>
-            <Route path="/details/:id" element={<OrderDetails/>}></Route> 
-            <Route path="/trace" element={<OrderTrace/>}></Route> 
-            <Route path="/parametres/:id" element={<Parametres/>}></Route>
+            <Route path="/" element={<Home/>} basename="/">
+              <Route path="parametres/:id" element={<Popup children={<Parametres></Parametres>} />}></Route> 
+              <Route path="cart" element={<PopupSide title="Ваш заказ" children={<Cart></Cart>} />}></Route> 
+              <Route path="filter" element={<PopupSide title="Фильтры" children={<Filter></Filter>} />}></Route> 
+              <Route path="login" element={<Popup children={<Login></Login>} />}></Route> 
+              <Route path="registration" element={<Popup children={<Registration></Registration>} />}></Route> 
+            </Route>
+            <Route path="/order" element={<Order/>}>
+              <Route path="checkout" element={<OrderCheckout/>}></Route> 
+              <Route path="accepted/:id" element={<OrderAccepted/>}></Route> 
+              <Route path="details/:id" element={<OrderDetails/>}></Route> 
+            </Route>
+
             <Route path="*" element={<NoMatch/>}></Route>
+            
             {
-              isAdmin ? <Route path="/admin" element={<Admin/>}></Route> 
+              isAdmin ? 
+              <Route path="/admin" element={<Admin/>}></Route> 
               : 
               <Route path="/account" element={<Account/>}>
                 <Route path="setting" element={<Setting/>}></Route> 
@@ -64,19 +69,8 @@ function App() {
               </Route>
             }
           </Routes>
+          
         </main>
-        {
-            showLoginPopup ? <Login></Login> : null
-        }
-        {
-            showRegistrationPopup ? <Registration></Registration> : null
-        }
-        {
-            showFilterPopup ? <Filter></Filter> : null
-        }
-        {
-            showCartPopup ? <Cart></Cart> : null
-        }
       </div>
 
     </BrowserRouter>

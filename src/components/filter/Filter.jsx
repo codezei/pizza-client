@@ -82,40 +82,25 @@ function Filter () {
 
 
     return (
-        <div className="popup" onClick={(e)=>{if(e.target === e.currentTarget) {changeFilterPopupHandler()}}}>
-            <div className="popup__inner popup__inner--side filter">
-                <div className="popup__header">
-                    <h2 className="popup__title popup__title--side">Фильтры</h2>
-                    <button type="button" onClick={changeFilterPopupHandler} className="popup__close popup__close--side">{closeIcon}</button>
-                </div>
-                <div className="popup__content">
-                    {
-                        categoriesData.map((categoryItem, categoryIndex)=>{
+
+        <div className="filter">
+            {categoriesData.map((categoryItem, categoryIndex)=>{
+                    return (
+                    <div key={`category-${categoryIndex}`} className="filter__item">
+                        <h3 className="filter__category">{categoryItem.category}</h3>
+                        {categoryItem.composition.map((compositionItem, compositionIndex)=>{
                             return (
-                            <div key={`category-${categoryIndex}`} className="filter__item">
-                                <h3 className="filter__category">{categoryItem.category}</h3>
-                                {
-                                    categoryItem.composition.map((compositionItem, compositionIndex)=>{
-                                        return (
-                                            <button className={`filter__btn ${compositionItem.active ? "active" : ""}`} key={`composition-${compositionIndex}`} onClick={()=>{changeActiveCategoryHundler(categoryItem.category, compositionItem.value, compositionItem.active)}}>{compositionItem.name}</button>
-                                        )
-                                    })
-                                }
-                            </div>
-                            )
-                        })
-                    }
-                </div>
-               
-
-                <div className="filter__footer">
-                    <button className="btn btn--inversion filter__reset" onClick={deleteFiterHundler}>Сбросить</button>
-                    <button className="btn filter__accept" onClick={addFilterHundler}>Применить</button>
-                </div>
-
-
+                                <button className={`filter__btn ${compositionItem.active ? "active" : ""}`} key={`composition-${compositionIndex}`} onClick={()=>{changeActiveCategoryHundler(categoryItem.category, compositionItem.value, compositionItem.active)}}>{compositionItem.name}</button>
+                            )})}
+                    </div>)
+                })
+            }
+            <div className="filter__footer">
+                <button className="btn btn--inversion filter__reset" onClick={deleteFiterHundler}>Сбросить</button>
+                <button className="btn filter__accept" onClick={addFilterHundler}>Применить</button>
             </div>
         </div>
+
         
     )
 
