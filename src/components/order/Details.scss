@@ -26,13 +26,10 @@
         border-top: 1px solid #F0F0F0;
 
     }
-    &__col {
+    &__row {
+        align-items: center;
         &:not(:last-child) {
-            margin-right: 15px;
-        }
-        &--indicator {
-            position: relative;
-            padding-left: 15px;
+            margin-bottom: 15px;
         }
     }
     &__indicator {
@@ -42,7 +39,10 @@
         top: 0;
         left: 0;
         border-radius: 2px;
-
+        &-wrap {
+            position: relative;
+            padding-left: 15px;
+        }
 
     }
     &__name {
@@ -107,10 +107,13 @@
             border-radius: 6px;
             padding: 10px 20px;
             color: #FF7010;
+            display: inline-block;
+
         }
         &-total {
             color: #FF7010;
             font-weight: 700;
+            text-align: right;
         }
     }
 }

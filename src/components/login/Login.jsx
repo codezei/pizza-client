@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux"
 import "./Login.scss"
-import {changeLoginPopup, changeRegistrationPopup} from "../../reducers/appReducer"
 import React from 'react'
 import {login} from "../../actions/user"
 import { Link } from 'react-router-dom'
@@ -35,7 +34,7 @@ function Login () {
                     <input type="password" name="password" id="password" className="form__input input" required onChange={(e)=>{setFormDataHundler(e.target)}} value={formData['password']} />
                 </div>
                 <button type="submit" className="btn form__btn form__btn--login">Войти</button>
-                <Link to="/registration" className="btn btn--inversion form__btn form__btn--registartion">Регистраиця</Link>
+                <Link to="#registration" className="btn btn--inversion form__btn form__btn--registartion">Регистраиця</Link>
             </form>
         </div>
     )

@@ -2,7 +2,7 @@ import "./Cart.scss"
 import { useDispatch, useSelector } from "react-redux"
 import { incrementCountProduct, decrementCountProduct, removeFromCart } from '../../reducers/cartReducer'
 import { API_URL } from "../../config"
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import React from 'react'
 
 function Cart() {
@@ -27,6 +27,7 @@ function Cart() {
             }, 0))
         }
     }
+
       
     React.useEffect(() => {
         getTotalPrice()
@@ -78,11 +79,11 @@ function Cart() {
                         </div>
                     )
                 }) : 'Корзина пуста'}
-            {cartList.length &&
+            {cartList.length ? 
             <div className="cart__footer">
                 <div className="cart__total">Итого: {total} {currency}</div>
                 <Link to="/order/checkout" className="cart__btn btn">Оформить заказ</Link>
-            </div>}
+            </div> : ""}
 
         </div>
     )

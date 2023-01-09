@@ -2487,6 +2487,25 @@ body {
       }
     }
   }
+  &--cancel {
+    background-color: gray;
+    border: 1px solid gray;
+    color: #fff;
+    &:hover {
+      background-color: black;
+      color: $white;
+      
+    }
+    &.active {
+      background-color: black;
+      border: 1px solid black;
+      color: #fff;
+      &:hover {
+        background-color: black;
+        border: 1px solid black;
+      }
+    }
+  }
 }
 .tcenter {
   text-align: center;

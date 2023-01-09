@@ -1,15 +1,12 @@
 import axios from "axios"
-import {setUser} from "../reducers/userReducer"
-import {API_URL} from "../config"
-import {closeLoginPopup, closeRegistrationPopup} from "../reducers/appReducer"
+import { setUser } from "../reducers/userReducer"
+import  { API_URL } from "../config"
 import { logOut } from "../reducers/userReducer"
 
 function registration (email, password) {
     return async function (dispatch) {
         try {
             const response = await axios.post(`${API_URL}api/auth/registration`, {email, password})
-            // console.log(response)
-            dispatch(closeRegistrationPopup())
             dispatch(login(email, password))
         } catch (e) {
             alert(e.response.data.message)
@@ -24,7 +21,6 @@ function login (email, password) {
             const response = await axios.post(`${API_URL}api/auth/login`, {email, password})
             localStorage.setItem('token', response.data.token)
             dispatch(setUser(response.data.user))
-            dispatch(closeLoginPopup())
            
         } catch (e) {
             alert(e.response.data.message)
@@ -44,8 +40,9 @@ function auth () {
             dispatch(setUser(response.data.user))
 
         } catch (e) {
-            alert(e.response.data.message)
             dispatch(logOut())
+            alert(e.response.data.message)
+            
         }
     }
 }

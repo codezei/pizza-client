@@ -1,20 +1,25 @@
-@import "../../assets/styles/variables.scss";
-
 .add-product {
     &__form {
-        max-width: 300px;
         width: 100%;
+    }
+}
+
+.form {
+    &__col {
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
     }
 }
 
 
 .admin {
-    // &-list {
-
-    // }
+    &-list {
+        overflow-x: auto;
+    }
     &-product {
-        border: 1px solid $primary;
-        background-color: $white;
+        border: 1px solid var(--primary);
+        background-color: var(--white);
         &--edit {
             cursor: no-drop;
             user-select: none;
@@ -28,19 +33,40 @@
             max-width: 100px;
         }
         &__row:not(:last-child) &__col {
-             
-                border-bottom: 1px solid $primary;
-            
+            border-bottom: 1px solid var(--primary);
         }
         &__col {
             max-width: 250px;
             padding: 10px;
             &:not(:last-child) {
-                border-right: 1px solid $primary;
+                border-right: 1px solid var(--primary);
             }
         }
-
+        &__date {
+            white-space: nowrap;
+        }
     }
-    
+    &-order {
+        &__item {
+            display: flex;
+            width: 100%;
+            &:not(:last-child) {
+                margin-bottom: 15px;
+            }
+            &-details {
+                width: 100%;
+                margin-right: 15px;
+            }
+            &-nav {
+                display: flex;
+                flex-direction: column;
+            }
+            &-btn {
+                &:not(:last-child) {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
 }
 

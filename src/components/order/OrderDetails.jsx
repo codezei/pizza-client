@@ -9,9 +9,10 @@ import React from 'react';
 function OrderDetails() {
     const currentOrder = useSelector(state=>{return state.order.currentOrder})
     let currency = useSelector((state) => { return state.app.currency })
+    const statusDescription = useSelector(state=>{return state.app.statusDescription})
     const dispatch = useDispatch()
     let { id } = useParams();
-    const statusDescription = useSelector(state=>{return state.app.statusDescription})
+    
 
     React.useEffect(()=>{
 

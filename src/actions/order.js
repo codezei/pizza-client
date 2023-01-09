@@ -40,6 +40,20 @@ function getOrders () {
         }
     }
 }
+function getOrdersAll () {
+    return async function (dispatch) {
+        try {
+            const response = await axios.post(`${API_URL}api/order/getAll`, {}, {
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+            })
+            console.log(response.data)
+            dispatch(setOrdersAction(response.data))
+            
+        } catch(e) {
+            alert(e.response.data.message)
+        }
+    }
+}
 
 function getOrder (id) {
     return async function (dispatch) {
@@ -53,4 +67,4 @@ function getOrder (id) {
     }
 }
 
-export {addOrder, getOrders, getOrder}
+export {addOrder, getOrders, getOrder, getOrdersAll}

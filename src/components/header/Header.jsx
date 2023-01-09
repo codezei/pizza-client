@@ -1,10 +1,10 @@
 import "./Header.scss"
 import {useDispatch, useSelector} from "react-redux"
-import {changeLoginPopup, changeCartPopup} from "../../reducers/appReducer"
 import {userIcon} from "../../assets/icons/iconsSvg"
 import {cartIcon} from "../../assets/icons/iconsSvg"
 import {logOut} from "../../reducers/userReducer"
 import {Link} from "react-router-dom"
+
 import React from 'react'
 import logo from '../../assets/images/logo.svg'
 
@@ -15,10 +15,6 @@ function Header () {
     const currentUser = useSelector(state=>{return state.user.currentUser})
     const cartList = useSelector(state=>{return state.cart.cartList})
     let [cartSummary, setCartSummary] = React.useState(0)
-
-    function changeLoginPopupHundler () {
-        dispatch(changeLoginPopup())
-    }
 
     function logOutHundler () {
         dispatch(logOut())
@@ -37,9 +33,9 @@ function Header () {
         } else {
             setCartSummary(0)
         }
-        
-
+    
     }
+    
     React.useEffect(()=>{
         getCartCummary ()
     }, [cartList])
@@ -67,7 +63,7 @@ function Header () {
                                         }
                                     </div> 
                                     : 
-                                    <Link to="/login" className="header__link">{userIcon}Войти в аккаунт</Link>
+                                    <Link to="#login" className="header__link">{userIcon}Войти в аккаунт</Link>
                                 }
                             </div>
 
@@ -78,10 +74,11 @@ function Header () {
                     <Link to="/" className="header__logo logo">
                         <img src={logo} alt="" />
                     </Link> 
-                        <Link to="/cart" className="btn header__btn">{cartIcon}{` ${cartSummary} ₴`} </Link>
+                        <Link to={`#cart`} className="btn header__btn">{cartIcon}{` ${cartSummary} ₴`} </Link>
                     </div>
                 </div>
             </div>
+            
         </header>
     )
 }

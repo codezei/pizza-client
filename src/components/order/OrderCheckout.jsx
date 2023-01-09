@@ -11,6 +11,7 @@ function OrderCheckout() {
     let currency = useSelector(state => { return state.app.currency })
     const navigate = useNavigate();
     const dispatch = useDispatch()
+
     let [order, setOrder] = React.useState({
         foods: cartList.map(cartItem => {
             return {

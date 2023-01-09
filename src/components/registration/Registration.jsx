@@ -1,6 +1,4 @@
 import { useDispatch } from "react-redux"
-import {changeRegistrationPopup} from "../../reducers/appReducer"
-import {closeIcon} from "../../assets/icons/iconsSvg"
 import React from 'react'
 import {registration} from "../../actions/user"
 import "./Registration.scss"

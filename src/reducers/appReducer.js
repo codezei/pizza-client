@@ -35,6 +35,10 @@ const defaultState = {
         }
     ],
     statusDescription: {
+        'cancel': {
+            name: 'Отменен',
+            color: 'gray'
+        },
         'processing': {
             name: 'В обработке',
             color: 'red'
@@ -46,10 +50,6 @@ const defaultState = {
         'done': {
             name: 'Выполнен',
             color: 'orange'
-        },
-        'cancel': {
-            name: 'Отменен',
-            color: 'gray'
         }
     }
 }

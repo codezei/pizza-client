@@ -7,7 +7,6 @@ import {Outlet} from "react-router-dom"
 
 function Home () {
     const products = useSelector(state=>{return state.products.products})
-
     return (
         <div className="home">
             <div className="container">
