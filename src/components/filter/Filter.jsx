@@ -1,9 +1,7 @@
 import "./Filter.scss"
-import {closeIcon} from "../../assets/icons/iconsSvg"
 import {useDispatch, useSelector} from "react-redux"
 import React from 'react';
 import {addFilter, deleteFilter} from "../../reducers/productsReducer"
-import {changeFilterPopup} from "../../reducers/appReducer"
 
 
 function Filter () {
@@ -48,9 +46,6 @@ function Filter () {
         dispatch(deleteFilter())
     }
 
-    function changeFilterPopupHandler () {
-        dispatch(changeFilterPopup())
-    }
     function changeActiveCategoryHundler (categoryName, compositionValue, active) {
         setCategoriesData(
             categoriesData.map((categoriesItem)=>{

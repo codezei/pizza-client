@@ -26,6 +26,7 @@ import Popup from "./components/popup/Popup.jsx"
 import PopupSide from './components/popup/PopupSide';
 import OrderCheckout from './components/order/OrderCheckout';
 import PopupsHash from './components/popup/PopupsHash';
+import Pizza from './components/pizza/Pizza';
 
 function App() {
   const dispatch = useDispatch()
@@ -53,6 +54,7 @@ function App() {
               {/* <Route path="login" element={<Popup children={<Login></Login>} />}></Route> 
               <Route path="registration" element={<Popup children={<Registration></Registration>} />}></Route>  */}
             </Route>
+            <Route path="/pizza" element={<Pizza/>}></Route>
             <Route path="/order" element={<Order/>}>
               <Route path="checkout" element={<OrderCheckout/>}></Route> 
               <Route path="accepted/:id" element={<OrderAccepted/>}></Route> 

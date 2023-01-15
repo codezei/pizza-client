@@ -1,7 +1,8 @@
 
 import OrderDetailsItem from '../order/OrderDetailsItem'
+import { statusIcons } from '../../assets/icons/iconsSvg';
 
-function AdminOrderItem({ changeStatusHandler, getStatusHandler, order, currency, statusDescription}) {
+function AdminOrderItem({ changeStatusHandler, order, currency, statusDescription}) {
     return ( 
         <div className="admin-order__item">
             <div className="admin-order__item-details">
@@ -17,8 +18,9 @@ function AdminOrderItem({ changeStatusHandler, getStatusHandler, order, currency
                 ></OrderDetailsItem>
             </div>
             <div className="admin-order__item-nav">
-                <button className="btn admin-order__item-btn" onClick={()=>{changeStatusHandler(order.data.status)}}>{getStatusHandler(order.data.status)}</button>
-                <button className="btn btn--cancel admin-order__item-btn">Отмена</button>
+                {statusDescription.map(item=>{return (
+                    <button key={`${order._id}-${item.value}`} className={`admin-order__item-btn btn btn--inversion ${order.data.status === item.value ? 'active' : ""}`} onClick={()=>{changeStatusHandler(item.value, order._id)}} title={item.nominative}>{statusIcons[item.value]}</button>
+                )})}
             </div>
             
 

@@ -6,8 +6,7 @@ import AddProduct from "./addProduct/AddProduct"
 import EditProduct from "./editProduct/EditProduct"
 import AdminProductList from "./AdminProductList"
 import AdminOrderList from "./AdminOrderList"
-import { getOrdersAll } from "../../actions/order"
-
+import { getOrdersAll, changeStatusOrder } from "../../actions/order"
 
 function Admin () {
     const dispatch = useDispatch()
@@ -30,17 +29,11 @@ function Admin () {
     function setModeAddProductHundler () {
         setModeEditProduct(false)
     }
-    function changeStatusHandler (currentStatus) {
-        let statuses = []
-        for (let status in statusDescription) {
-            statuses.push(status)
-        }
+    function changeStatusHandler (currentStatus, id) {
+        dispatch(changeStatusOrder(currentStatus, id))
         
     }
-    function getStatusHandler (currentStatus) {
-        
-        return currentStatus
-    }
+
 
     React.useEffect(()=>{
         console.log(orders)
@@ -64,7 +57,6 @@ function Admin () {
                         orders={orders}
                         currency={currency}
                         statusDescription={statusDescription}
-                        getStatusHandler={getStatusHandler}
                         changeStatusHandler={changeStatusHandler}
                     >
                     </AdminOrderList>: null

@@ -1,6 +1,6 @@
 import axios from "axios"
 import {API_URL} from "../config"
-import {addOrderAction, setOrdersAction ,setCurrentOrderAction} from "../reducers/orderReducer"
+import {addOrderAction, setOrdersAction, setCurrentOrderAction, changeStatusOrderAction} from "../reducers/orderReducer"
 import {clearCart} from "../reducers/cartReducer"
 
 function addOrder (order, redirectCallback) {
@@ -55,6 +55,24 @@ function getOrdersAll () {
     }
 }
 
+function changeStatusOrder (status, id) {
+    return async function (dispatch) {
+        try {
+            const formData = new FormData()
+            formData.append('status', JSON.stringify(status))
+            formData.append('id', JSON.stringify(id))
+            const response = await axios.post(`${API_URL}api/order/change`, formData, {
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+            })
+            console.log(response.data)
+            dispatch(changeStatusOrderAction(response.data))
+            
+        } catch(e) {
+            alert(e.response.data.message)
+        }
+    }
+}
+
 function getOrder (id) {
     return async function (dispatch) {
         try {
@@ -67,4 +85,4 @@ function getOrder (id) {
     }
 }
 
-export {addOrder, getOrders, getOrder, getOrdersAll}
+export {addOrder, getOrders, getOrder, getOrdersAll, changeStatusOrder}

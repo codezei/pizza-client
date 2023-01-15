@@ -116,4 +116,9 @@
             text-align: right;
         }
     }
+    @media screen and (max-width: 767px) {
+        &__col {
+            margin-bottom: 10px;
+        }
+    }
 }

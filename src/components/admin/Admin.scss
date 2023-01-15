@@ -1,4 +1,8 @@
 .add-product {
+    margin-bottom: 25px;
+    &__title {
+        margin-top: 0;
+    }
     &__form {
         width: 100%;
     }
@@ -14,12 +18,22 @@
 
 
 .admin {
+    &__title {
+        margin-top: 0;
+    }
     &-list {
         overflow-x: auto;
+        margin-bottom: 25px;
+        &__title {
+            margin-top: 0;
+        }
     }
     &-product {
         border: 1px solid var(--primary);
         background-color: var(--white);
+        &__title {
+            margin-top: 0;
+        }
         &--edit {
             cursor: no-drop;
             user-select: none;
@@ -47,9 +61,19 @@
         }
     }
     &-order {
-        &__item {
+        &__title {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        &__nav {
             display: flex;
-            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        &__item {
+            // display: flex;
+            // width: 100%;
             &:not(:last-child) {
                 margin-bottom: 15px;
             }
@@ -59,11 +83,42 @@
             }
             &-nav {
                 display: flex;
-                flex-direction: column;
+                margin-top: 10px;
             }
             &-btn {
                 &:not(:last-child) {
-                    margin-bottom: 10px;
+                    margin-right: 10px;
+                }
+            }
+        }
+        &__filter {
+            display: flex;
+            align-items: center;
+            &-status {
+                margin-right: 15px;
+            }
+        }
+    }
+    @media screen and (max-width: 992px) {
+        &-order {
+            &__title {
+                margin-bottom: 25px;
+            }
+            &__nav {
+                flex-wrap: wrap;
+            }
+            &__filter {
+                flex-wrap: wrap;
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    }
+    @media screen and (max-width: 767px) {
+        &-order {
+            &__filter {
+                &-status {
+                    margin-bottom: 15px;
                 }
             }
         }

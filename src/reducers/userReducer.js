@@ -30,7 +30,7 @@ function userReducer (state = defaultState, action) {
         case LOG_OUT:
             localStorage.removeItem('token')
             return {
-                ...state, isAuth: false, currentUser: {}
+                ...state, isAuth: false, currentUser: {}, isAdmin:false
             }
         default:
             return state

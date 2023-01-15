@@ -6,6 +6,7 @@ const defaultState = {
 const ADD_ORDER = 'ADD_ORDER'
 const SET_ORDERS = 'SET_ORDERS'
 const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER'
+const CHANGE_ORDER_STATUS = "CHANGE_ORDER_STATUS"
 
 function orderReducer (state = defaultState, action) {
     switch (action.type) {
@@ -20,6 +21,16 @@ function orderReducer (state = defaultState, action) {
         case SET_CURRENT_ORDER:
             return {
                 ...state, currentOrder: action.payload
+            }
+        case CHANGE_ORDER_STATUS:
+            return {
+                ...state, orders: state.orders.map(item => { 
+                    if (item._id === action.payload._id) {
+                        return {...item, data: {...item.data, status: action.payload.data.status}}
+                    } else {
+                        return item
+                    }
+                })
             }
         default:
             return state
@@ -44,7 +55,13 @@ function setCurrentOrderAction (order) {
         payload: order
     }
 }
+function changeStatusOrderAction (order) {
+    return {
+        type: CHANGE_ORDER_STATUS,
+        payload: order
+    }
+}
 
 
 
-export {orderReducer, addOrderAction, setOrdersAction, setCurrentOrderAction}
+export {orderReducer, addOrderAction, setOrdersAction, setCurrentOrderAction, changeStatusOrderAction}

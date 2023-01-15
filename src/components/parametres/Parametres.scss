@@ -1,7 +1,7 @@
-@import "../../assets/styles/variables.scss";
+// @import "../../assets/styles/variables.scss";
 .parametres {
 
-    background-color: $white;
+    background-color: var(--white);
     padding: 20px;
     max-width: 1070px;
     &__inner {
@@ -10,7 +10,7 @@
         align-items: center;
     }
     &__title {
-
+        margin-top: 0;
     }
     &__img {
         flex-shrink: 0;
@@ -26,30 +26,30 @@
         margin-bottom: 25px;
     }
     &-composition, &-addition  {
-        &__list {
-            display: flex;
-        }
+        // &__list {
+        //     display: flex;
+        // }
         &__item {
             cursor: pointer;
-            &:not(:last-child) {
-                margin-right: 20px;
-            }
-            max-width: 105px;
+            // &:not(:last-child) {
+            //     margin-right: 20px;
+            // }
+            // max-width: 105px;
         }
        
         &__img {
-            border: 1px solid $gray-line;
-            width: 105px;
+            border: 1px solid var(--gray-line);
+            // width: 105px;
             height: 105px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: $white;
+            background-color: var(--white);
             margin-bottom: 10px;
             position: relative;
             svg {
-                color: $primary;
+                color: var(--primary);
             }
 
         }
@@ -69,23 +69,23 @@
                     width: 16px;
                     height: 16px;
                     border-radius: 50%;
-                    border: 1px solid $gray-text;
+                    border: 1px solid var(--gray-text);
                     background-size: 15px;
                     background-position: center;
                     position: absolute;
                     top: 8px;
                     right: 8px;
-                    color: $gray-text;
+                    color: var(--gray-text);
                     background-repeat: no-repeat;
                 }
                 svg {
-                    color: $gray-text;
+                    color: var(--gray-text);
                 }
             }
         }
         &__name {
             .active & {
-                color: $gray-text;
+                color: var(--gray-text);
             }
         }
     }
@@ -95,7 +95,7 @@
         &__img {
             position: relative;
             .active & {
-                border: 1px solid $primary;
+                border: 1px solid var(--primary);
                 &:before {
                     content: "";
                     display: block;
@@ -103,20 +103,20 @@
                     width: 16px;
                     height: 16px;
                     border-radius: 50%;
-                    border: 1px solid $primary;
+                    border: 1px solid var(--primary);
                     background-size: 15px;
                     background-position: center;
                     position: absolute;
                     top: 8px;
                     right: 8px;
-                    color: $gray-text;
+                    color: var(--gray-text);
                     background-repeat: no-repeat;
                 }
             }
         }
         &__price {
             text-align: center;
-            color: $primary;
+            color: var(--primary);
             font-weight: 600;
         }
         &__name {
@@ -140,7 +140,7 @@
             width: 100%;
             height: 100%;
             border-radius: 6px;
-            border: 1px solid $gray-line;
+            border: 1px solid var(--gray-line);
             position: absolute;
             left: 0;
             top: 0;
@@ -150,16 +150,16 @@
     &__btn {
         padding: 13px;
         border-radius: 6px;
-        color: $black;
+        color: var(--black);
         background-color: transparent;
         border: none;
         cursor: pointer;
         &.active {
-            background-color: $primary;
-            color: $white;
+            background-color: var(--primary);
+            color: var(--white);
         }
         &--dough {
-            width: 50%;
+            width: 100%;
         }
         &--size {
             width: 33%;
@@ -168,17 +168,44 @@
     &__total {
         font-size: 20px;
         font-weight: 600;
-        color: $primary;
+        color: var(--primary);
         display: inline-block;
         margin-right: 10px;
     }
     &__weight {
-        color: $gray-text;
+        color: var(--gray-text);
         display: inline-block;
     }
     &__footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    @media screen and (max-width: 992px) {
+        &__inner {
+            flex-direction: column;
+        }
+        &__title {
+            text-align: center;
+        }
+        &-addition {
+            &__title {
+                text-align: center;
+            }
+        }
+    }
+    @media screen and (max-width: 767px) {
+
+        &-composition, &-addition  {
+            &__col {
+                margin-bottom: 10px;
+            }
+        }
+
+    }
+    @media screen and (max-width: 375px) {
+        // &__row {
+        //     flex-direction: column;
+        // }
     }
 }

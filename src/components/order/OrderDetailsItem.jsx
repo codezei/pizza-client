@@ -5,6 +5,7 @@ import './Details.scss'
 function OrderDetailsItem({number, date, status, statusDescription, foods, adress, total, currency}) {
     
     const [moreDetails, setMoreDetails] = useState(false)
+    
 
     function showMoreDetailsHandler () {
         setMoreDetails(prev => {return !prev})
@@ -12,9 +13,9 @@ function OrderDetailsItem({number, date, status, statusDescription, foods, adres
     return ( 
     <div className="details">
         <div className="details__top row">
-            <div className="details__col col-md-4">
+            <div className="details__col col-12 col-md-4">
                 <div className="details__indicator-wrap">
-                    <div className="details__indicator" style={{backgroundColor: statusDescription[status].color}}>
+                    <div className="details__indicator" style={{backgroundColor: statusDescription.find(item=>{return item.value === status}).color}}>
 
                     </div>
                     <div className="details__name">
@@ -26,23 +27,23 @@ function OrderDetailsItem({number, date, status, statusDescription, foods, adres
                 </div>
 
             </div>
-            <div className="details__col col-md-3">
+            <div className="details__col col-12 col-md-3">
                 <div className="details__name">
                     Сумма заказа
                 </div>
                 <div className="details__value">
-                    {total}
+                    {total} {currency}
                 </div>
             </div>
-            <div className="details__col col-md-4">
+            <div className="details__col col-12 col-md-4">
                 <div className="details__name">
                     Статус
                 </div>
                 <div className="details__value">
-                    {statusDescription[status].name}
+                    {statusDescription.find(item=>{return item.value === status}).name}
                 </div>
             </div>
-            <div className="details__col col-md-1">
+            <div className="details__col col-12 col-md-1 tright">
                 <button type="button" className={`details__btn ${moreDetails && 'active'}`} onClick={showMoreDetailsHandler}>
                     <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
                         <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />

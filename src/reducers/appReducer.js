@@ -34,24 +34,39 @@ const defaultState = {
             value: "thin"
         }
     ],
-    statusDescription: {
-        'cancel': {
+
+    statusDescription: [
+        {
+            value: 'cancel',
             name: 'Отменен',
-            color: 'gray'
-        },
-        'processing': {
-            name: 'В обработке',
+            nominative: 'Отмена',
             color: 'red'
         },
-        'delivery': {
+        {
+            value: 'processing',
+            name: 'В обработке',
+            nominative: 'В обработку',
+            color: 'gray'
+        },
+        {
+            value: 'working',
+            name: 'В работе',
+            nominative: 'В работу',
+            color: 'yellow'
+        },
+        {
+            value: 'delivery',
             name: 'Доставка',
+            nominative: 'Доставка',
             color: 'orange'
         },
-        'done': {
+        {
+            value: 'done',
             name: 'Выполнен',
-            color: 'orange'
+            nominative: 'Выполнен',
+            color: 'green'
         }
-    }
+    ]
 }
 
 

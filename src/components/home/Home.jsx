@@ -10,7 +10,7 @@ function Home () {
     return (
         <div className="home">
             <div className="container">
-                <Goods title="Пицца" goods={products}></Goods>
+                <Goods title="Пицца" goods={products} pagination={false} limit={8}></Goods>
             </div>
             <Outlet></Outlet>
         </div>

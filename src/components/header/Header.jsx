@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 import {userIcon} from "../../assets/icons/iconsSvg"
 import {cartIcon} from "../../assets/icons/iconsSvg"
 import {logOut} from "../../reducers/userReducer"
-import {Link} from "react-router-dom"
+import {Link, NavLink} from "react-router-dom"
 
 import React from 'react'
 import logo from '../../assets/images/logo.svg'
@@ -40,46 +40,46 @@ function Header () {
         getCartCummary ()
     }, [cartList])
     return (
-        <header className="header">
-            <div className="container">
-                <div className="header__inner">
-                    <div className="header__top">
-                        <div className="header__top-left">
-                            <p className="">Среднее врем доставки*: <b>00:24:19</b> </p>
+         <header className="header">
+                <div className="container">
+                    <div className="row justify-content-between align-items-center header__row">
+                        <div className="col-auto">
+                            <Link to="/" className="header__logo logo">
+                                <img src={logo} alt="" />
+                            </Link> 
                         </div>
-                        <div className="header__top-right">
-                            <p className="header__schedule">Время работы: с 11:00 до 23:00</p>
-                            <div className="header__person">
-                                {
-                                    isAuth ? 
-                                    <div>
-                                        <p>Вы вошли как {getUserName()}</p>
-                                        <button className="btn header__btn" onClick={logOutHundler}>Выйти</button>
-                                        {
-                                            isAdmin ? 
-                                                <Link to="/admin" className="btn header__btn">Админ-панель</Link> 
-                                                : 
-                                                <Link to="/account/setting" className="btn header__btn">Аккаунт</Link> 
-                                        }
-                                    </div> 
-                                    : 
-                                    <Link to="#login" className="header__link">{userIcon}Войти в аккаунт</Link>
-                                }
-                            </div>
-
-                            
+                        <div className="col-auto">
+                            {
+                                isAuth ? 
+                                <div>
+                                    <div className="mb15">Вы вошли как {getUserName()}</div>
+                                    <button className="btn header__btn" onClick={logOutHundler}>Выйти</button>
+                                    {
+                                        isAdmin ? 
+                                            <Link to="/admin" className="btn header__btn">Админка</Link> 
+                                            : 
+                                            <Link to="/account/setting" className="btn header__btn">Аккаунт</Link> 
+                                    }
+                                </div> 
+                                : 
+                                <Link to="#login" className="header__link">{userIcon}Войти в аккаунт</Link>
+                            }
                         </div>
                     </div>
-                    <div className="header__bottom">
-                    <Link to="/" className="header__logo logo">
-                        <img src={logo} alt="" />
-                    </Link> 
-                        <Link to={`#cart`} className="btn header__btn">{cartIcon}{` ${cartSummary} ₴`} </Link>
+                    <div className="row justify-content-between align-items-center">
+                        <div className="col-auto">
+                            <nav className="menu">
+                                <NavLink to="/" className="menu__link">Главная</NavLink>
+                                <NavLink to="/pizza" className="menu__link">Пицца</NavLink>
+                                <NavLink to="/order" className="menu__link">Заказ</NavLink>
+                            </nav>
+                        </div>
+                        <div className="col-auto">
+                            <Link to={`#cart`} className="btn header__btn">{cartIcon}{` ${cartSummary} ₴`} </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-        </header>
+            </header>
     )
 }
 
