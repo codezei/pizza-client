@@ -16,9 +16,9 @@ function Setting () {
     function sendChangeUserDataHandler (e) {
         e.preventDefault()
         dispatch(edit(userData))
+        setDisabledInput(true)
     }
     function changeUserDataHandler (e) {
-        console.log(userData)
         setUserData({
             ...userData, [e.target.name]: e.target.value
         })
@@ -38,40 +38,41 @@ function Setting () {
                    
                 </div>
                 <form className="setting__item-form" method='POST' onSubmit={sendChangeUserDataHandler}>
-                    <div className="setting__item-row">
-                        <div className="setting__item-col">
+                    <div className="row">
+                        <div className="col-12 col-sm-6 col-xl-3 setting__item-col">
                             <label className="setting__item-label" htmlFor='name'>
                                 Имя
                             </label>
                             <input type="text" className="setting__item-input input" disabled={disabledInput} value={userData.name || ''} id="name" name="name" onChange={changeUserDataHandler}></input>
                         </div>
-                        <div className="setting__item-col">
+                        <div className="col-12 col-sm-6 col-xl-3 setting__item-col">
                             <label className="setting__item-label" htmlFor='phone'>
                                 Телефон
                             </label>
                             <input type="tel" className="setting__item-input input" disabled={disabledInput} value={userData.phone || ''} id="phone" name="phone" onChange={changeUserDataHandler}></input>
                         </div>
-                        <div className="setting__item-col">
+                        <div className="col-12 col-sm-6 col-xl-3 setting__item-col">
                             <label className="setting__item-label" htmlFor='email'>
                                 Email
                             </label>
                             <input type="email" className="setting__item-input input" disabled={disabledInput} value={userData.email || ''} id="email" name="email" onChange={changeUserDataHandler}></input>
                         </div>
-                        <div className="setting__item-col">
+                        <div className="col-12 col-sm-6 col-xl-3 setting__item-col">
                             <label className="setting__item-label" htmlFor='date'>
                                 Дата рождения
                             </label>
                             <input type="text" className="setting__item-input input" disabled={disabledInput} value={userData.date || ''} id="date" name="date" onChange={changeUserDataHandler}></input>
                         </div>
-                        {
-                            !disabledInput ? 
-                            <div className="setting__item-col">
-                                <button className="btn">Изменить</button>
-                            </div>
-                            : ""
-                        }
+
 
                     </div>
+                    {
+                            !disabledInput ? 
+   
+                                <button className="btn setting__item-btn">Изменить</button>
+    
+                            : ""
+                        }
                 </form>
 
             </div>

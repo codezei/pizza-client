@@ -103,16 +103,21 @@ function OrderDetailsItem({number, date, status, statusDescription, foods, adres
 
                                 </div>
                             </div>
-                            <div className="col-md-2 details__col text-center">
-                                <div className="details__product-count">
-                                    {product.count} шт.
+                            <div className="col-md-4 details__col">
+                                <div className="row justify-content-between align-items-center">
+                                    <div className="col-auto text-center">
+                                        <div className="details__product-count">
+                                            {product.count} шт.
+                                        </div>
+                                    </div>
+                                    <div className="col-auto">
+                                        <div className="details__product-total">
+                                            {product.count * product.price} {currency}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col-md-2 details__col">
-                                <div className="details__product-total">
-                                    {product.count * product.price} {currency}
-                                </div>
-                            </div>
+
 
                         </div>
                     )

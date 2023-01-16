@@ -71,7 +71,7 @@ function Header () {
                             <nav className="menu">
                                 <NavLink to="/" className="menu__link">Главная</NavLink>
                                 <NavLink to="/pizza" className="menu__link">Пицца</NavLink>
-                                <NavLink to="/order" className="menu__link">Заказ</NavLink>
+                                <NavLink to="/order/checkout" className="menu__link">Заказ</NavLink>
                             </nav>
                         </div>
                         <div className="col-auto">

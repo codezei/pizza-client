@@ -65,7 +65,6 @@ function deleteProductAction (id) {
             const response = await axios.delete(`${API_URL}api/product/delete?id=${id}`,  {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             }) 
-            console.log(response) 
             dispatch(deleteProduct(id))
         } catch (e) {
             alert(e.response.data.message)

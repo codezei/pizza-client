@@ -36,7 +36,6 @@ function Admin () {
 
 
     React.useEffect(()=>{
-        console.log(orders)
         dispatch(getOrdersAll())
     }, [])
 

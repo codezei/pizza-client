@@ -18,8 +18,6 @@ function addOrder (order, redirectCallback) {
             dispatch(setCurrentOrderAction(response.data))
             redirectCallback(response.data._id)
             dispatch(clearCart())
-            console.log(response.data)
-
         } catch (e) {
             alert(e.response.data.message)
         }
@@ -32,7 +30,6 @@ function getOrders () {
             const response = await axios.post(`${API_URL}api/order/get`, {}, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             })
-            console.log(response.data)
             dispatch(setOrdersAction(response.data))
             
         } catch(e) {
@@ -46,7 +43,6 @@ function getOrdersAll () {
             const response = await axios.post(`${API_URL}api/order/getAll`, {}, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             })
-            console.log(response.data)
             dispatch(setOrdersAction(response.data))
             
         } catch(e) {
@@ -64,7 +60,6 @@ function changeStatusOrder (status, id) {
             const response = await axios.post(`${API_URL}api/order/change`, formData, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             })
-            console.log(response.data)
             dispatch(changeStatusOrderAction(response.data))
             
         } catch(e) {
@@ -78,7 +73,6 @@ function getOrder (id) {
         try {
             const response = await axios.get(`${API_URL}api/order/get?id=${id}`)
             dispatch(setCurrentOrderAction(response.data))
-            console.log(response.data)
         } catch(e) {
             alert(e.response.data.message)
         }

@@ -1,9 +1,8 @@
-@import "../../assets/styles/variables.scss";
 .cart {
 
     &__item {
         padding: 15px;
-        border: 1px solid $gray-line;
+        border: 1px solid var(--gray-line);
         border-radius: 5px;
         display: flex;
         align-items: center;
@@ -19,11 +18,12 @@
     &__name {
         font-weight: 700;
         margin-bottom: 10px;
+        margin-top: 0;
     }
     &__count {
         display: flex;
-        background: #FFEEE2;
-        color: #FF7010;
+        background: var(--primary-light);
+        color: var(--primary);
         padding: 5px;
         border-radius: 5px;
         align-items: center;
@@ -45,7 +45,20 @@
         align-items: center;
     }
     &__price {
-        color: #FF7010;
+        color: var(--primary);
         font-weight: 700;
+    }
+    &__composition {
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+    @media screen and (max-width: 575px) {
+        &__item {
+            flex-direction: column;
+        }
+        &__img {
+            margin-right: 0;
+            margin-bottom: 15px;
+        }
     }
 }

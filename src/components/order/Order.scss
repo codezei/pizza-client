@@ -1,15 +1,12 @@
 
 
 .order {
+
     &-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-       /* White */
-
         background: #FFFFFF;
-        /* Line gray */
-
         border: 1px solid #F0F0F0;
         border-radius: 12px;
         padding: 15px;
@@ -17,16 +14,19 @@
             margin-bottom: 25px;
         }
         &__img {
-            width: 120px;
-            margin-right: 15px;
+            // width: 120px;
+            // margin-right: 15px;
+            max-width: 100%;
+            border-radius: 50%;
         }
         &__title {
             margin-top: 0;
+            margin-bottom: 10px;
         }
-        &__info {
-            display: flex;
-            align-items: center;
-        }
+        // &__info {
+        //     display: flex;
+        //     align-items: center;
+        // }
         &__value {
             display: flex;
             align-items: center;
@@ -45,26 +45,35 @@
             background: #FFEEE2;
             border-radius: 6px;
             padding: 5px 10px;
-            margin-right: 15px;
+            display: inline-block;
+            white-space: nowrap;
+            // margin-right: 15px;
 
+        }
+        @media screen and (max-width: 767px) {
+            &__col {
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+            }
         }
     }
 
     &-checkout {
+        &__title {
+            margin-top: 0;
+        }
         &__block {
             &:not(:last-of-type) {
                 padding-bottom: 15px;
                 margin-bottom: 15px;
                 border-bottom: 1px solid #eee;
             }
-            &-row {
-                display: flex;
-            }
             &-col {
-                max-width: 33%;
-                width: 100%;
-                &:not(:last-child) {
-                    margin-right: 15px;
+                @media screen and (max-width: 767px) {
+                    &:not(:last-child) {
+                        margin-bottom: 10px;
+                    }
                 }
             }
             &-label {

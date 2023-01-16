@@ -3,7 +3,7 @@ import './Account.scss'
 
 function Account () {
     return (
-        <div className="account">
+        <div className="account block">
             <div className="container">
                 <div className="account__header">
                     <h2 className="title account__title">Мой аккаунт</h2>
@@ -16,8 +16,6 @@ function Account () {
                 <div className="account__content">
                     <Outlet></Outlet>
                 </div>
-
-                
             </div>
         </div>
     )

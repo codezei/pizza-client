@@ -6,7 +6,6 @@ function Pagination ({products, message}) {
         currentPage: 1,
         pages: [],
         countPerPage: 8,
-        
     })
 
     function setPages (length) {
@@ -21,14 +20,11 @@ function Pagination ({products, message}) {
         return (index < (paginationData.currentPage * paginationData.countPerPage)) && (index >= ((paginationData.currentPage * paginationData.countPerPage) - paginationData.countPerPage)) ? true : false
     }
     function swithPage (page) {
- 
         if (paginationData.pages.find(item=>{return page === item})) {
             setPaginationData({...paginationData, currentPage: page})
         }
-        
     }
     React.useEffect(()=>{
-        console.log(products.length)
         if (products.length) {
             setPaginationData({...paginationData, pages: setPages (products.length)})
         }

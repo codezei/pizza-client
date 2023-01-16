@@ -64,6 +64,7 @@
         margin-bottom: 15px;
         border-bottom: 1px solid #eee;
     }
+
 }
 
 .menu {
@@ -91,6 +92,13 @@
         }
         &.active:before {
             width: 100%;
+        }
+    }
+    @media screen and (max-width: 575px) {
+        &__link {
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
         }
     }
 }

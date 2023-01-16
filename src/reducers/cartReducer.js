@@ -16,7 +16,6 @@ function cartReducer (state = defaultState, action) {
             }
             
         case INCREMENT_COUNT_PRODUCT:
-            console.log(state.cartList)
             localStorage.setItem('cartList', JSON.stringify(state.cartList.map((item)=>{
                 if (item.key === action.payload.key) {
                     return {...item, count: item.count + 1}
@@ -35,7 +34,6 @@ function cartReducer (state = defaultState, action) {
                 })
             }
         case DECREMENT_COUNT_PRODUCT:
-            console.log(state.cartList)
             localStorage.setItem('cartList', JSON.stringify(state.cartList.map((item)=>{
                 if (item.key === action.payload.key) {
                     return {...item, count: item.count - 1}
@@ -55,7 +53,6 @@ function cartReducer (state = defaultState, action) {
                 })
             }
         case REMOVE_FROM_CART:
-            console.log(state.cartList)
             localStorage.setItem('cartList', JSON.stringify(state.cartList.filter((item)=>{
                 return item.key !== action.payload.key
             })))

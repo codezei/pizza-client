@@ -18,8 +18,10 @@
             align-items: flex-end;
         }
         &-col {
-            &:not(:last-child) {
-                margin-right: 15px;
+            @media screen  and (max-width: 992px) {
+                &:not(:last-child) {
+                    margin-bottom: 10px
+                }
             }
         }
         &-label {
@@ -28,12 +30,16 @@
             margin-bottom: 10px;
         }
         &-input {
+            width: 100%;
             &[disabled] {
                 background: transparent;
                 border: none;
                 color: var(--black);
                 padding: 0;
             }
+        }
+        &-btn {
+            margin-top: 10px;
         }
     }
 }

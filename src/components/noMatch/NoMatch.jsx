@@ -2,8 +2,8 @@
 
 function NoMatch () {
     return (
-        <div>
-            Страица не найдена
+        <div className="container">
+           <h2 className="title tcenter"> Страица не найдена </h2>
         </div>
     )
 }

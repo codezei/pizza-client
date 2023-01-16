@@ -49,12 +49,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>} basename="/">
               <Route path="parametres/:id" element={<Popup children={<Parametres></Parametres>} />}></Route> 
-              {/* <Route path="cart" element={<PopupSide title="Ваш заказ" children={<Cart></Cart>} />}></Route>  */}
-              <Route path="filter" element={<PopupSide title="Фильтры" children={<Filter></Filter>} />}></Route> 
-              {/* <Route path="login" element={<Popup children={<Login></Login>} />}></Route> 
-              <Route path="registration" element={<Popup children={<Registration></Registration>} />}></Route>  */}
             </Route>
-            <Route path="/pizza" element={<Pizza/>}></Route>
+            <Route path="/pizza" element={<Pizza/>}>
+              <Route path="parametres/:id" element={<Popup children={<Parametres></Parametres>} />}></Route> 
+            </Route>
             <Route path="/order" element={<Order/>}>
               <Route path="checkout" element={<OrderCheckout/>}></Route> 
               <Route path="accepted/:id" element={<OrderAccepted/>}></Route> 
