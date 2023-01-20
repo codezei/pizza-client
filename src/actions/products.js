@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {API_URL} from "../config"
+import {API_URL, API_URL_PART} from "../config"
 import {addProduct, deleteProduct, editProduct, setProducts} from "../reducers/productsReducer"
 import {changeShowLoader} from "../reducers/appReducer"
 
@@ -7,7 +7,7 @@ function getProductsAction () {
     return async function (dispatch) {
         try {
             dispatch(changeShowLoader(true))
-            const response = await axios.get(`${API_URL}api/product/get`)  
+            const response = await axios.get(`${API_URL}${API_URL_PART}api/product/get`)  
 
             dispatch(setProducts(response.data))
             dispatch(changeShowLoader(false))
@@ -29,7 +29,7 @@ function addProductAction (product) {
             formData.append('compositionAdd', JSON.stringify(product['product-composition-add']))
             formData.append('price', product['product-price'])
             formData.append('name', product['product-name'])
-            const response = await axios.post(`${API_URL}api/product/add`, formData,  {
+            const response = await axios.post(`${API_URL}${API_URL_PART}api/product/add`, formData,  {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             })  
             
@@ -49,7 +49,7 @@ function editProductAction (product) {
             formData.append('compositionAdd', JSON.stringify(product['product-composition-add']))
             formData.append('price', product['product-price'])
             formData.append('name', product['product-name'])
-            const response = await axios.post(`${API_URL}api/product/edit`, formData,  {
+            const response = await axios.post(`${API_URL}${API_URL_PART}api/product/edit`, formData,  {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             })  
             dispatch(editProduct(response.data))
@@ -62,7 +62,7 @@ function editProductAction (product) {
 function deleteProductAction (id) {
     return async function (dispatch) {
         try {
-            const response = await axios.delete(`${API_URL}api/product/delete?id=${id}`,  {
+            const response = await axios.delete(`${API_URL}${API_URL_PART}api/product/delete?id=${id}`,  {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             }) 
             dispatch(deleteProduct(id))
