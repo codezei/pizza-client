@@ -47,7 +47,7 @@ function App() {
       
         <main>
           <Routes>
-            <Route path="/" element={<Home/>} basename="/">
+            <Route path="/" element={<Home/>} basename="/" exact>
               <Route path="parametres/:id" element={<Popup children={<Parametres></Parametres>} />}></Route> 
             </Route>
             <Route path="/pizza" element={<Pizza/>}>
