@@ -1,3 +1,3 @@
-const API_URL = "/.netlify/functions/index/"
+const API_URL = "https://beautiful-sunburst-0940ca.netlify.app/.netlify/functions/index/"
 
 export {API_URL}
