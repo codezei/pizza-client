@@ -1,3 +1,3 @@
-const API_URL = "http://localhost:5000/"
+const API_URL = "/.netlify/functions/index/"
 
 export {API_URL}
