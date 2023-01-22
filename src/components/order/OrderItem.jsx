@@ -1,4 +1,4 @@
-import { API_URL } from "../../config"
+
 import { useSelector } from 'react-redux'
 
 function OrderItem (props) {
@@ -9,7 +9,7 @@ function OrderItem (props) {
                 <div className="col-md-8 order-item__col">
                     <div className="row justify-content-between align-items-center">
                         <div className="col-md-4 col-3">
-                            <img src={`${API_URL}/${props.orderItem.imgPath}`} alt="" className="order-item__img" />
+                            <img src={`${props.orderItem.imgPath}`} alt="" className="order-item__img" />
                         </div>
                         <div className="col-md-8 col-9">
                             <h4 className="order-item__title">

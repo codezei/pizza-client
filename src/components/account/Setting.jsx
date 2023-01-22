@@ -1,7 +1,7 @@
 import React from 'react'
 import './Setting.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import {edit} from '../../actions/user'
+import { edit } from '../../actions/user'
 
 
 function Setting () {

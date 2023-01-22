@@ -1,7 +1,7 @@
 import "./Filter.scss"
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import React from 'react';
-import {addFilter, deleteFilter} from "../../reducers/productsReducer"
+import { addFilter, deleteFilter } from "../../reducers/productsReducer"
 
 
 function Filter () {

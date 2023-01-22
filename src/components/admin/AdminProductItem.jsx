@@ -1,5 +1,5 @@
-import {API_URL} from "../../config"
-import {editIcon, deleteIcon} from "../../assets/icons/iconsSvg"
+
+import { editIcon, deleteIcon } from "../../assets/icons/iconsSvg"
 
 function AdminProductItem({item, setModeEditProductHundler, editProductHundler, deleteProductHandler, index}) {
     return ( 
@@ -8,7 +8,7 @@ function AdminProductItem({item, setModeEditProductHundler, editProductHundler, 
                 {index + 1}
             </td>
             <td className="admin-product__col">
-                <img src={`${API_URL}/${item.imgPath}`} alt="" className="admin-product__img" />         
+                <img src={`${item.imgPath}`} alt="" className="admin-product__img" />         
             </td>
             <td className="admin-product__col">
                 <p className="admin-product__name">{item.name}</p>       

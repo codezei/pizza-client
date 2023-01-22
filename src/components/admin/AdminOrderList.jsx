@@ -23,8 +23,10 @@ function AdminOrderList({orders, currency, statusDescription, getStatusHandler, 
     }) : null
     return ( 
         <div className="admin-order">
+            
             <div className="admin-order__nav">
                 <h3 className="admin-order__title">Список заказов</h3>
+
                 <div className="admin-order__filter">
                     <div className="admin-order__filter-status">
                         {statusDescription.map(item=>{return (
@@ -46,7 +48,7 @@ function AdminOrderList({orders, currency, statusDescription, getStatusHandler, 
             
             <div className="admin-order__list">
                 {
-                    <Pagination products={ordersList} message='Заказов нет'></Pagination>
+                    <Pagination products={ordersList} message="Заказов нет"></Pagination>
                 }
             </div>
         </div>

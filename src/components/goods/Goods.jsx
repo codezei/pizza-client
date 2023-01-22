@@ -1,5 +1,4 @@
 import "./Goods.scss"
-import {API_URL} from "../../config"
 import { Link, useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import Pagination from "../pagination/Pagination"
@@ -29,7 +28,7 @@ function Goods ({goods, title, pagination, limit, children}) {
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 goods__col" key={`goods-${item._id}`}>
                 <div className="goods-item">
                     <div className="goods-item__top">
-                        <img src={`${API_URL}/${item.imgPath}`} alt="" className="goods-item__img" />
+                        <img src={`${item.imgPath}`} alt="" className="goods-item__img" />
                         <h3 className="goods-item__name">{item.name}</h3>
                         <p className="goods-item__composition">{item.composition.filter(item=>{return item.checked}).map(item=>{return item.name}).join(', ')}</p>
                     </div>
@@ -48,18 +47,22 @@ function Goods ({goods, title, pagination, limit, children}) {
     })
 
     return (
-        <section className="goods block">
-            <div className="goods__nav">
-                <h2 className="goods__title title">{title}</h2>
-                <Link to="#filter" className="btn">Фильтр{filter.length ? `(${filter.length})`: null}</Link>
-            </div>
-            <div className="row">
-                {pagination ? <Pagination products={products} message='Товаров нет'></Pagination> : products}
-                {children && <div className="col-12">
-                    {children}
-                </div>}
-            </div>
-        </section>
+                <section className="goods block">
+                    { products.length ? 
+                        <>
+                            <div className="goods__nav">
+                                <h2 className="goods__title title">{title}</h2>
+                                <Link to="#filter" className="btn">Фильтр{filter.length ? `(${filter.length})`: null}</Link>
+                            </div>
+                            <div className="row">
+                                {pagination ? <Pagination products={products}></Pagination> : products}
+                                {children && <div className="col-12">
+                                    {children}
+                                </div>}
+                            </div>
+                        </> : <h3 className="tcenter"><b>Товаров нет</b></h3>
+                    }
+                </section>
     )
 }
 

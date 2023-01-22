@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import "./Login.scss"
 import React from 'react'
-import {login} from "../../actions/user"
+import { login } from "../../actions/user"
 import { Link } from 'react-router-dom'
 
 

@@ -1,7 +1,6 @@
 import "./Cart.scss"
 import { useDispatch, useSelector } from "react-redux"
 import { incrementCountProduct, decrementCountProduct, removeFromCart } from '../../reducers/cartReducer'
-import { API_URL } from "../../config"
 import { Link } from 'react-router-dom'
 import React from 'react'
 
@@ -38,7 +37,7 @@ function Cart() {
                 cartList.map((item, index) => {
                     return (
                         <div className="cart__item" key={`cart-item-${index}`}>
-                            <img src={`${API_URL}/${item.imgPath}`} alt="" className="cart__img" />
+                            <img src={`${item.imgPath}`} alt="" className="cart__img" />
                             <div>
                                 <h3 className="cart__name">{item.name}</h3>
                                 <div className="cart__composition">

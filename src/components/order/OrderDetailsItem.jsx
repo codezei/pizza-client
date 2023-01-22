@@ -1,4 +1,4 @@
-import {API_URL} from "../../config"
+
 import { useState } from "react"
 import './Details.scss'
 
@@ -57,7 +57,7 @@ function OrderDetailsItem({number, date, status, statusDescription, foods, adres
                 {
                     foods.map((product, index)=>{
                         return (
-                            <img className="details__products-img" src={`${API_URL}/${product.imgPath}`} alt="" key={`${index}-img`}></img>
+                            <img className="details__products-img" src={`${product.imgPath}`} alt="" key={`${index}-img`}></img>
                         )
                     })
                 }
@@ -70,7 +70,7 @@ function OrderDetailsItem({number, date, status, statusDescription, foods, adres
                         <div className="details__row row" key={`${product.key}-details-bottom`}>
                             <div className="col-md-4 details__col">
                                 <div className="details__product-row">
-                                    <img className="details__product-img" src={`${API_URL}/${product.imgPath}`} alt=""></img>
+                                    <img className="details__product-img" src={`${product.imgPath}`} alt=""></img>
                                     <div className="details__product-name">{product.name}</div>
                                 </div>
                             </div>

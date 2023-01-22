@@ -1,7 +1,6 @@
 import { editProductAction } from "../../../actions/products"
 import { useDispatch, useSelector } from "react-redux"
 import React from 'react'
-import { API_URL } from "../../../config"
 
 function EditProduct(props) {
     const dispatch = useDispatch()
@@ -73,7 +72,7 @@ function EditProduct(props) {
                             <label htmlFor="product-file" className="form__label">Изображение</label>
                             <input type="file" name="product-file" id="product-file" className="input form__input" accept="image/*" onChange={(e) => { setProductDataHundler(e.target) }} />
                             {
-                                <img src={loadedImg ? loadedImg : `${API_URL}/${props.product.imgPath}`} alt="" />
+                                <img src={loadedImg ? loadedImg : `${props.product.imgPath}`} alt="" />
                             }
                         </div>
                         <div className="form__row col-xl-4 col-md-6 form__col">

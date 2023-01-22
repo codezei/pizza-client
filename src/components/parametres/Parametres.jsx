@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from "react-redux"
 import React from 'react';
 import {compositionIcons} from "../../assets/icons/iconsSvg"
 import "./Parametres.scss"
-import {API_URL} from "../../config"
 import {Link} from "react-router-dom"
 import {addToCart} from "../../reducers/cartReducer"
 import {incrementCountProduct} from '../../reducers/cartReducer'
@@ -79,7 +78,7 @@ function Parametres () {
     return (
         product?._id ? <div className="parametres">
                 <div className="parametres__inner">
-                    <img src={`${API_URL}/${product.imgPath}`} alt="" className="parametres__img" />
+                    <img src={`${product.imgPath}`} alt="" className="parametres__img" />
                     <div className="parametres__data">
                         <h3 className="parametres__title">{product.name}</h3>
                         <div className="parametres__composition parametres-composition">
@@ -105,7 +104,7 @@ function Parametres () {
                                 {
                                     productDough.map((item, index)=>{
                                         return (
-                                            <div className="col-12 col-sm-6">
+                                            <div className="col-12 col-sm-6" key={`dough-${index}`}>
                                                 <button key={`parametres-dough-${index}`} className={`${item.id === productData.dough.id ? "active": ""} parametres__btn parametres__btn--dough`} type="button" onClick={()=>{setProductDataDoughHundler(item)}}>{item.name}</button>
                                             </div>
                                         )
