@@ -12,7 +12,7 @@ function Home () {
         <div className="home">
             <div className="container">
                 <Goods title="Пицца" goods={products} pagination={false} limit={8}>
-                    <Link to="/pizza">Посмотреть все</Link>
+                    <Link to="/pizza" className='goods__link'>Посмотреть все</Link>
                 </Goods>
             </div>
             <Outlet></Outlet>

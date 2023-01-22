@@ -27,7 +27,7 @@ function OrderAccepted() {
                 Спасибо за заказ! <br></br>
                 Примерное время доставки 45 минут. Статус отследить можно нажав на кнопку ниже
             </p>
-            {isAuth ? <Link to={`/order/details/${id}`} className='btn'>Отследить заказ</Link> : <Link to={`/accont/history`} className='btn'>Отследить заказ</Link>}
+            {isAuth ? <Link to={`/accont/history`} className='btn'>Отследить заказ</Link>  : <Link to={`/order/details/${id}`} className='btn'>Отследить заказ</Link>}
 
         
     </div>
