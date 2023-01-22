@@ -36,7 +36,7 @@ let statusIcons = {
 }
 
 let compositionIcons = {
-  "bacon": <svg fill="currentColor" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xmlSpace="preserve"><g><g><path d="M502.69,159.382c-40.007,0-59.456-4.697-80.046-9.67c-20.744-5.01-42.193-10.191-84.418-10.191
+  "bacon": <svg fill="currentColor" height={50} width={50} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xmlSpace="preserve"><g><g><path d="M502.69,159.382c-40.007,0-59.456-4.697-80.046-9.67c-20.744-5.01-42.193-10.191-84.418-10.191
   s-63.674,5.181-84.416,10.191c-20.59,4.973-40.039,9.67-80.046,9.67c-40.005,0-59.453-4.697-80.042-9.67
   c-20.743-5.01-42.191-10.191-84.413-10.191c-5.143,0-9.31,4.167-9.31,9.31v194.476c0,5.143,4.167,9.31,9.31,9.31
   c40.005,0,59.452,4.697,80.041,9.669c20.743,5.01,42.191,10.191,84.414,10.191c42.224,0,63.675-5.181,84.418-10.191
